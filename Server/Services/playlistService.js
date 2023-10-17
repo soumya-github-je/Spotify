@@ -40,7 +40,7 @@ export const getPlaylist = async (_, args) => {
         },
       ]);
       
-    console.log(JSON.stringify(playlist));
+    
     return playlist;
   } catch (error) {
     console.log(error);
