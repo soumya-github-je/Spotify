@@ -21,6 +21,10 @@ const server = new ApolloServer({
 
   const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 },
+    context: ({ req }) => {
+    const token = req.headers.authorization || "";
+    return { token };
+  },
   });
   
   dbConnect()

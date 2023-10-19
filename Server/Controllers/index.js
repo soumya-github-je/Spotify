@@ -1,7 +1,8 @@
 import {register, login} from "../Services/authService.js"
 import {createSong, deleteSong, updateSong} from "../Services/SongService.js"
 import { createArtist, artist,deleteArtist, updateArtist } from "../Services/artistService.js"
-import { createPlaylist, getPlaylist } from "../Services/playlistService.js"
+import { createPlaylist, getPlaylist, deletePlaylist } from "../Services/playlistService.js"
+import {getLibrary, createLibrary, deleteLibrary, updateLibrary} from "../Services/libraryService.js"
 
 export const resolvers = {
     Query: {
@@ -9,6 +10,7 @@ export const resolvers = {
         login,
         artist,
         playlist: getPlaylist,
+        library: getLibrary
     },
     Mutation:{
         createSong,
@@ -17,6 +19,10 @@ export const resolvers = {
         createArtist,
         deleteArtist,
         updateArtist,
-        createPlaylist
+        createPlaylist,
+        deletePlaylist,
+        createLibrary,
+        deleteLibrary,
+        updateLibrary
     }
 }

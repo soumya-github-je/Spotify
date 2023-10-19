@@ -9,9 +9,9 @@ export const typeDefs = `#graphql
     }
     type Songs{
         title:String!
-        releaseDate:String!
+        songPostedYear: Int
         artist:String
-        duration:String
+        songDuration:Int
     }
     type ArtistOutput {
         name:String
@@ -30,21 +30,32 @@ export const typeDefs = `#graphql
         songs:[Songs]
     }
 
+    type Library{
+        _id:String
+        name:String,
+        songs:[Songs]
+    }
+
     type Query {
         login(email: String!, password: String!): LoginOutput
         register(userName: String!, password: String!,email: String!): LoginOutput
         artist(id:FilterIn):[ArtistOutput]
         playlist(id: FilterIn!): [PlaylistOutput]
+        library:[Library]!
     }
 
     type Mutation {
-        updateSong(id: String!, title: String, artist: String, songDuration: String, songPostedYear: String): Status
-        createSong(title: String!, artist: String!, songDuration: String!, songPostedYear: String!): Status
+        updateSong(id: String!, title: String, artist: String, songDuration: Int, songPostedYear: Int): Status
+        createSong(title: String!, artist: String, songDuration:Int, songPostedYear: Int): Status
         deleteSong(id: String!): Status
         createArtist(name: String, profilePicture: String, songs: [String]): Status
         deleteArtist(id: String!): Status
         updateArtist(id: String!,name: String,profilePicture: String,songs:[String]): Status
+        deletePlaylist (id: FilterIn): Status
         createPlaylist(name: String!, songs:[String]!, artist: [String]!): Status
+        createLibrary (name: String, songs:[String]): Status
+        updateLibrary (id: String!, name: String, songs:[String]): Status
+        deleteLibrary (id: FilterIn): Status
     }
 
 `

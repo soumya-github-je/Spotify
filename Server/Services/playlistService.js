@@ -59,7 +59,7 @@ export const getPlaylist = async (_, args) => {
 export const createPlaylist = async (_, args)=> {
     try {
         const {name,likes, songs, artist, songsDuration, songsCount} = args
-        const newPlaylist= new PlaylistModel({
+        const newPlaylist= new Playlist({
             name, likes,songs, artist, songsCount, songsDuration
         });
         await newPlaylist.save()
@@ -77,20 +77,24 @@ export const createPlaylist = async (_, args)=> {
     }
 }
 
-export const deleteArtist = async(_, args)=> {
-    try {
-        const {id} = args
-        await ArtistModel.deleteOne({_id: id})
-        return {
-            status: true,
-            message: "Artist deleted"
-        }
-    } catch (error) {
-        return{
-            status: false,
-            message: error
-        }
-    }
+export const deletePlaylist = async(_, args)=> {
+  try {
+      const {id} = args
+      await Playlist.deleteMany({
+          _id: {
+              $in: id.in.map((id) => new mongoose.Types.ObjectId(id)),
+            },
+      })
+      return {
+          status: true,
+          message: "Playlist deleted"
+      }
+  } catch (error) {
+      return{
+          status: false,
+          message: error
+      }
+  }
 }
 
 export const updateArtist = async(_, args)=> {

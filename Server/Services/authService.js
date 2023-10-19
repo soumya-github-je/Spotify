@@ -47,7 +47,7 @@ export const login = async (_, args) => {
         const token = jwt.sign({
             email: isThere.email,
             userName: isThere.userName
-        }, process.env.JWT_SECRET)
+        }, process.env.JWT_TOKEN)
         return {
             token
         }
