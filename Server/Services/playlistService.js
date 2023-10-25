@@ -34,6 +34,7 @@ export const getPlaylist = async (_, args) => {
             name: 1,
             artist: true,
             like: "0",
+            imageURL: 1,
             songsCount: { $size: "$songs" },
             songsDuration: { $sum: "$songs.songDuration" },
           },
@@ -58,9 +59,9 @@ export const getPlaylist = async (_, args) => {
 
 export const createPlaylist = async (_, args)=> {
     try {
-        const {name,likes, songs, artist, songsDuration, songsCount} = args
+        const {name,likes, songs, artist, songsDuration, songsCount, imageURL} = args
         const newPlaylist= new Playlist({
-            name, likes,songs, artist, songsCount, songsDuration
+            name, likes,songs, artist, songsCount, songsDuration, imageURL
         });
         await newPlaylist.save()
        return{

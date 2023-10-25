@@ -5,6 +5,7 @@ const PlaylistSheema = mongoose.Schema({
     likes: Number,
     songsCount: Number,
     songsDuration: Number,
+    imageURL: String,
     artist: [{type: mongoose.Types.ObjectId, ref:"artists"}],
     songs: [{type: mongoose.Schema.Types.ObjectId, ref:"Songs"}]
 })

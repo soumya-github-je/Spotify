@@ -4,12 +4,24 @@ import { useEffect, useState } from "react"
 import AlbumCard from "../components/home/AlbumCard"
 import SongTopCard from "../components/songs/SongTopCard"
 import "./songDetails.css"
+import { useQuery } from "@apollo/client"
+import { GET_PLAYLIST } from "../gql/queries"
 
 const SongDetails = () => {
     const [songHeadStyle, setSongHeadStyle] = useState({
         background: "transparent"
     })
-    
+
+    const {data , loading , error} = useQuery(GET_PLAYLIST, {
+        variables:{
+            playlistId:{
+                in:["65324dec0853e2f38abac13f"]
+            }
+        }
+    })
+
+    console.log("from server" , data, loading, error)
+
     useEffect(()  => {
         const handleScroll = () =>{
             var songListTop = document.querySelector(".playlist-icons-container")
@@ -46,9 +58,17 @@ const SongDetails = () => {
 
                
     }, [])
+
+    if (loading) "Loading..."
+    if (error && !data) "Error occurred"
     return(
         <div className="play-list-container">
             <SongTopCard 
+            image = {data?.playlist[0]?.imageURL}
+            name = {data?.playlist[0]?.name}
+            author = {data?.playlist[0]?.artist[0]?.name}
+            authorImage = {data?.playlist[0]?.artist[0]?.profilePicture}
+            songsCount ="3 songs"
             description="Peaceful piano to help you slow down, breathe, and relax."/>  
             <div className="playlist-bottom-container">
                 <div className="playlist-icons-container">
@@ -87,7 +107,7 @@ const SongDetails = () => {
                
                     <ol className="album-card-container">
                         {
-                            [1, 2, 3, 4, 5, 6, 7,1, 1, 1,2,3,45].map(ele => <AlbumCard key={ele} />)
+                            data && data.playlist[0].songs.map((song) => <AlbumCard {...song} key= {song.artist}/>)
                         }
                     </ol>
             </div>

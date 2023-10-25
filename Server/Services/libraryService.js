@@ -80,10 +80,26 @@ export const updateLibrary = async(_, args, context)=> {
         const {id, name,songs} = args
         const isVerified = jwt.verify(token.split(" ")[1], process.env.JWT_TOKEN);
         if (!isVerified) throw GraphQLError("User is not authenticated");
+
+        // await LibraryModel.aggregate([
+        //     {
+                
+        //         $lookup: {
+        //             from: "songs",
+        //             localField: "songs",
+        //             foreignField: "_id",
+        //             as: "songs"
+        //         }
+                  
+        //     }
+        // ])
+
         await LibraryModel.updateOne({_id: id},
             {
                 name,
-                $push: { songs },
+                $addToSet: { songs },
+                
+                
             })
         return {
             status: true,

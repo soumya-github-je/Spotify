@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import "./songtopcard.css"
 
-const SongTopCard = ({ image, type, name, description, songs, date, authorImage, author, timing }) => {
+const SongTopCard = ({ image, type, name, description, songsCount, likes, authorImage, author, timing }) => {
   return (
     <div className="playlist-head-container">
                 <div className="song-details-container">
@@ -20,9 +20,9 @@ const SongTopCard = ({ image, type, name, description, songs, date, authorImage,
                         <Link to={"/"} className="playlist-spotyfy-text">{author || "Spotify"} <span className="span-dot">
                                 •</span></Link>
                     </div>
-                    <p className="playlist-likes">{songs || "7,078,971 likes"} <span className="span-dot">
+                    <p className="playlist-likes">{ likes|| "7,078,971 likes"} <span className="span-dot">
                                 •</span></p>
-                    <p className="playlist-no-of-songs">{date || "310 songs"}<span className="span-dot">
+                    <p className="playlist-no-of-songs">{songsCount || "310 songs"}<span className="span-dot">
                                 ,</span></p>
                     <p className="playlist-no-of-hours">{timing || "about 11 hr"}</p>
 

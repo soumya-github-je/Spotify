@@ -28,6 +28,7 @@ export const typeDefs = `#graphql
         songsDuration: Int
         artist: [ArtistOutput]
         songs:[Songs]
+        imageURL: String
     }
 
     type Library{
@@ -52,7 +53,7 @@ export const typeDefs = `#graphql
         deleteArtist(id: String!): Status
         updateArtist(id: String!,name: String,profilePicture: String,songs:[String]): Status
         deletePlaylist (id: FilterIn): Status
-        createPlaylist(name: String!, songs:[String]!, artist: [String]!): Status
+        createPlaylist(name: String!, songs:[String]!, artist: [String]!, imageURL: String!): Status
         createLibrary (name: String, songs:[String]): Status
         updateLibrary (id: String!, name: String, songs:[String]): Status
         deleteLibrary (id: FilterIn): Status

@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 import "./albumcard.css"
 
-const AlbumCard = () => {
+const AlbumCard = ({title, songPostedYear, songDuration, artist}) => {
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
     
@@ -29,16 +29,16 @@ const AlbumCard = () => {
                 </div>
                 
                 <div className="album-title-container">
-                    <p className="album-title-desc"  onClick={()=> navigate('/artist-album')}>glance out a casement window</p>
-                    <p className="album-author" onClick={()=> navigate('/author-details')}>janet redger</p>
+                    <p className="album-title-desc"  onClick={()=> navigate('/artist-album')}>{title}</p>
+                    <p className="album-author" onClick={()=> navigate('/author-details')}>{artist}</p>
                 </div>
             </div>
             <div className="album-name">
-                <p onClick={()=> navigate('/artist-album')}>glance out a casement window</p>
+                <p onClick={()=> navigate('/artist-album')}>{title}</p>
             </div>
             
                 <div className="album-date-added">
-                    <p>19 hours ago</p>
+                    <p>{songPostedYear}</p>
                     <div className="hidden-icons">
                         {hover ? <div>
                     <a className="my-anchor-element-heart"><HeartOutlined style={{
@@ -57,7 +57,7 @@ const AlbumCard = () => {
             <div className="album-time-container">
                 
                 
-                <p className="album-time">2:50</p>
+                <p className="album-time">{songDuration}</p>
                 <div className="hidden-ellipsis-icon">
                     {hover ? 
                     <div>
