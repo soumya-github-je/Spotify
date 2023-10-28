@@ -3,6 +3,7 @@ import { PlayCircleFilled } from "@ant-design/icons"
 import "./SongCard.css"
 
 const SongCard = ({path, songImage, songTitle, songDescription}) => {
+    
     const navigate = useNavigate()
     return(
         <div className="song-card" 

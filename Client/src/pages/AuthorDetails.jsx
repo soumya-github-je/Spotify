@@ -8,12 +8,29 @@ import { Tooltip } from 'react-tooltip'
 import "./songDetails.css"
 import "./artistalbum.css"
 import "./authordetails.css"
+import { useQuery } from '@apollo/client'
+import { GET_ARTIST } from '../gql/queries'
 
 const AuthorDetails = () => {
+
+    const {data , loading , error} = useQuery(GET_ARTIST, {
+        variables:{
+            artistId:{
+                in:["653252c90853e2f38abac143"]
+            }
+        }
+    })
+
+    console.log("from server" , data, loading, error)
+    if (loading) "Loading..."
+    if (error && !data) "Error occurred"
+
   return (
     <div className='author-details-head-container'>
       
-          <AuthorTopCard/>
+          <AuthorTopCard
+            artistName={data?.artist[0]?.name}
+          />
       <div className="author-details-bottom-container">
           <div className="playlist-icons-container author-artist-icons-container">
                     <div className="playlist-play-icon">
@@ -39,12 +56,11 @@ const AuthorDetails = () => {
           <div className="author-details-popular-songs-container">
             <p className='popular-text-head'>Popular</p>
             <div className="artist-album-cards-containers">
-                    {
-                        [1, 2, 3, 4, 5].map(ele => <ArtistAlbumCard key={ele} 
-                            image="https://i.scdn.co/image/ab67616d00004851c1f1b784f7ef6ad1fd13e581"
-                            count="13,345,776"
-                        />)
-                    }
+                    
+                        {
+                            data && data?.artist[0]?.songs.map((song) => <ArtistAlbumCard {...song} key= {song.artist}/>)
+                        }
+                    
                 
                 </div>
           </div>

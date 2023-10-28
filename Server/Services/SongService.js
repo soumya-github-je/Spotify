@@ -2,12 +2,15 @@ import SongModel from "../Models/songModel.js";
 
 export const createSong = async (_, args)=> {
     try {
-        const {title, artist, songDuration, songPostedYear} = args
+        const {type,heading, artist, songDuration, songPostedYear, songImage
+        } = args
         const newSong = new SongModel({
-            title,
+            type,
+            heading,
             artist,
             songDuration,
-            songPostedYear
+            songPostedYear,
+            songImage
         });
         await newSong.save()
        return{
@@ -42,13 +45,15 @@ export const deleteSong = async(_, args)=> {
 
 export const updateSong = async(_, args)=> {
     try {
-        const {id,title, artist, songDuration, songPostedYear} = args
+        const {id,type,heading, artist, songDuration, songPostedYear, songImage} = args
         await SongModel.updateOne({_id: id},
             {
-                title,
+                type,
+                heading,
                 artist,
                 songDuration,
-                songPostedYear
+                songPostedYear,
+                songImage
             })
         return {
             status: true,

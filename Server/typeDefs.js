@@ -8,10 +8,12 @@ export const typeDefs = `#graphql
         message: String
     }
     type Songs{
-        title:String!
+        type: String
+        heading:String!
         songPostedYear: Int
         artist:String
         songDuration:Int
+        songImage: String
     }
     type ArtistOutput {
         name:String
@@ -22,13 +24,16 @@ export const typeDefs = `#graphql
         in:[String]
     }
     type PlaylistOutput{
-        name: String
-        likes:Int
-        songsCount: Int
-        songsDuration: Int
+        playListImage: String, 
+        type: String, 
+        heading: String, 
+        description: String,
+        songsCount:Int,
+        likes:Int,
+        songsDuration:Int,
         artist: [ArtistOutput]
         songs:[Songs]
-        imageURL: String
+        
     }
 
     type Library{
@@ -46,14 +51,24 @@ export const typeDefs = `#graphql
     }
 
     type Mutation {
-        updateSong(id: String!, title: String, artist: String, songDuration: Int, songPostedYear: Int): Status
-        createSong(title: String!, artist: String, songDuration:Int, songPostedYear: Int): Status
+        updateSong(id: String!, type: String, heading: String, artist: String, songDuration: Int, songPostedYear: Int, songImage: String): Status
+        createSong(type: String,heading: String, songPostedYear: Int, artist:String,songDuration:Int, songImage: String): Status
         deleteSong(id: String!): Status
         createArtist(name: String, profilePicture: String, songs: [String]): Status
         deleteArtist(id: String!): Status
         updateArtist(id: String!,name: String,profilePicture: String,songs:[String]): Status
         deletePlaylist (id: FilterIn): Status
-        createPlaylist(name: String!, songs:[String]!, artist: [String]!, imageURL: String!): Status
+        createPlaylist(
+            playListImage: String, 
+            type: String, 
+            heading: String, 
+            description: String,
+            songsCount:Int,
+            likes: Int,
+            songsDuration: Int,
+            artist: [String]!,
+            songs: [String]!
+            ): Status
         createLibrary (name: String, songs:[String]): Status
         updateLibrary (id: String!, name: String, songs:[String]): Status
         deleteLibrary (id: FilterIn): Status

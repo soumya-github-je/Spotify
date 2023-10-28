@@ -6,8 +6,20 @@ import SongTopCard from "../components/songs/SongTopCard"
 
 import "./artistalbum.css"
 import SongCard from "../components/home/SongCard"
+import { useQuery } from "@apollo/client"
+import {GET_PLAYLIST } from "../gql/queries"
 
 const ArtistAlbum = () => {
+
+    const {data , loading , error} = useQuery(GET_PLAYLIST, {
+        variables:{
+            playlistId:{
+                in:["653a4c2e710f575da91267c5"]
+            }
+        }
+    })
+
+    console.log("from server" , data, loading, error)
 
     useEffect(()  => {
         const handleScroll = () =>{
@@ -32,18 +44,21 @@ const ArtistAlbum = () => {
 
                
     }, [])
+
+    if (loading) "Loading..."
+    if (error && !data) "Error occurred"
   return (
         <div className="artist-album-container song">
             <div className="song-top-card-container song-top-card" >
                 <SongTopCard 
-                    name='Glance Out A Casement Window'
-                    type='song'
-                    image='https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581'
-                    authorImage='https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581'
-                    author='Janet Redger'
-                    timing="4:30"
-                    date='2023'
-                    songs='Glance Out A Casement Window'
+                  type = {data?.playlist[0]?.songs[0]?.type}
+                  heading={data?.playlist[0]?.songs[0]?.heading}
+                  authorImage= {data?.playlist[0]?.artist[0]?.profilePicture}
+                  authorName={data?.playlist[0]?.artist[0]?.name}
+                  songPostedYear={data?.playlist[0]?.songs[0]?.songPostedYear}
+                  songDuration={data?.playlist[0]?.songs[0]?.songDuration/60}
+                  likes={data?.playlist[0]?.likes}
+                  playListImage={data?.playlist[0]?.songs[0]?.songImage}
                 />
             </div>
             
@@ -97,7 +112,8 @@ const ArtistAlbum = () => {
                     {
                         [1, 2, 3, 4, 5].map(ele => <ArtistAlbumCard key={ele} 
                             image="https://i.scdn.co/image/ab67616d00004851c1f1b784f7ef6ad1fd13e581"
-                            count="13,345,776"
+                            noOfLikes="13,345,776"
+                            songName="song name"
                         />)
                     }
                 

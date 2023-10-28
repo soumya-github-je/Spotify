@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 
-const ArtistAlbumCard = ({image,title,count}) => {
+const ArtistAlbumCard = ({image,noOfLikes,songName}) => {
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
     
@@ -25,17 +25,17 @@ const ArtistAlbumCard = ({image,title,count}) => {
         <div className="image-and-album-name-card-container">
           <div className="artist-album-image-card-container">
             <img src={image || null} 
-            className="artist-album-card-image" alt=""  cl/>
+            className="artist-album-card-image" alt="" />
           </div>
           <div  className='artist-album-card-name'>
-            <p className="artist-album-card-name1">glance out a casement window</p>
-            <p  className="artist-album-card-name2">{title || null}</p>
+            <p className="artist-album-card-name1">{songName || null}</p>
+            
             
           </div>
           
         </div>
         <div className="count-no">
-          <p>{count || null}</p>
+          <p>{noOfLikes || null}</p>
               <div className="artist-album-hidden-icons">
                         {hover ? <div>
                     <a className="my-anchor-element-heart"><HeartOutlined style={{

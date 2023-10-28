@@ -31,10 +31,12 @@ export const getPlaylist = async (_, args) => {
           $project: {
             _id: true,
             songs: true,
-            name: 1,
+            heading: 1,
             artist: true,
-            like: "0",
-            imageURL: 1,
+            likes: 1,
+            type: 1,
+            description: 1,
+            playListImage: 1,
             songsCount: { $size: "$songs" },
             songsDuration: { $sum: "$songs.songDuration" },
           },
@@ -59,9 +61,19 @@ export const getPlaylist = async (_, args) => {
 
 export const createPlaylist = async (_, args)=> {
     try {
-        const {name,likes, songs, artist, songsDuration, songsCount, imageURL} = args
+        const {
+          playListImage, 
+          type, 
+          heading, 
+          description, 
+          songsCount, 
+          likes,
+          songsDuration, 
+          songs,
+          artist
+      } = args
         const newPlaylist= new Playlist({
-            name, likes,songs, artist, songsCount, songsDuration, imageURL
+           likes,songs, artist, songsCount, songsDuration,playListImage,type,heading,description
         });
         await newPlaylist.save()
        return{
@@ -100,12 +112,19 @@ export const deletePlaylist = async(_, args)=> {
 
 export const updateArtist = async(_, args)=> {
     try {
-        const {id, name, profilePicture,songs} = args
+        const {id, 
+          playListImage, 
+          type, 
+          heading, 
+          description, 
+          songsCount, 
+          likes,
+          songsDuration, 
+          songs,
+          artist} = args
         await ArtistModel.updateOne({_id: id},
             {
-                name,
-                profilePicture,
-                songs
+              likes,songs, artist, songsCount, songsDuration,playListImage,type,heading,description
             })
         return {
             status: true,

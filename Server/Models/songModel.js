@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
 const SongSheema = mongoose.Schema({
-    title: String, 
+    type: String,
+    heading: String, 
     artist: String, 
+    songImage: String,
     songDuration:Number, 
     songPostedYear: Number
 })

@@ -15,7 +15,7 @@ const SongDetails = () => {
     const {data , loading , error} = useQuery(GET_PLAYLIST, {
         variables:{
             playlistId:{
-                in:["65324dec0853e2f38abac13f"]
+                in:["653a4c2e710f575da91267c5"]
             }
         }
     })
@@ -64,12 +64,15 @@ const SongDetails = () => {
     return(
         <div className="play-list-container">
             <SongTopCard 
-            image = {data?.playlist[0]?.imageURL}
-            name = {data?.playlist[0]?.name}
-            author = {data?.playlist[0]?.artist[0]?.name}
-            authorImage = {data?.playlist[0]?.artist[0]?.profilePicture}
-            songsCount ="3 songs"
-            description="Peaceful piano to help you slow down, breathe, and relax."/>  
+            playListImage = {data?.playlist[0]?.playListImage}
+            type= {data?.playlist[0]?.type}
+            heading = {data?.playlist[0]?.heading}
+            description = {data?.playlist[0]?.description}
+            likes = {data?.playlist[0]?.likes}
+            
+            songsCount= {data?.playlist[0]?.songsCount} 
+            songsDuration= {data?.playlist[0]?.songsDuration/60}
+            />  
             <div className="playlist-bottom-container">
                 <div className="playlist-icons-container">
                     <div className="playlist-play-icon">

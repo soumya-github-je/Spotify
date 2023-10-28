@@ -33,7 +33,7 @@
 .artist-album-image-card-container{
     display: grid;
     place-items: center;
-    flex: 0.16;
+    
 }
 .artist-album-card-image{
     width: 55%;
@@ -56,7 +56,6 @@
     flex: 0.1;
     column-gap: 15px;
 }
-.artist-album-card-name1:hover,
-.artist-album-card-name2:hover{
+.artist-album-card-name1:hover{
     text-decoration: underline;
 }
