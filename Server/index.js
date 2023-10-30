@@ -9,9 +9,8 @@ dotenv.config()
 
 
 const dbConnect = async () => {
-    await mongoose.connect("mongodb://0.0.0.0:27017/spotify")
+    await mongoose.connect("mongodb+srv://soumya:soumyasvr@cluster0.9qam6q4.mongodb.net/spotify")
 }
-
 
 
 const server = new ApolloServer({
@@ -20,7 +19,7 @@ const server = new ApolloServer({
   });
 
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    listen: { port: 4000},
     context: ({ req }) => {
     const token = req.headers.authorization || "";
     return { token };

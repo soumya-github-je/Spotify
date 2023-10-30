@@ -15,7 +15,7 @@ const SongDetails = () => {
     const {data , loading , error} = useQuery(GET_PLAYLIST, {
         variables:{
             playlistId:{
-                in:["653a4c2e710f575da91267c5"]
+                in:["653f8ed104741b5f92f58cda"]
             }
         }
     })
@@ -110,7 +110,7 @@ const SongDetails = () => {
                
                     <ol className="album-card-container">
                         {
-                            data && data.playlist[0].songs.map((song) => <AlbumCard {...song} key= {song.artist}/>)
+                            data && data?.playlist[0]?.songs.map((song) => <AlbumCard {...song} key= {song.artist}/>)
                         }
                     </ol>
             </div>
