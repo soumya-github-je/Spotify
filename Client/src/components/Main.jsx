@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import {LeftOutlined, RightOutlined, PlayCircleFilled} from "@ant-design/icons"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Footer from "./global/Footer"
 import "./main.css"
 
@@ -8,6 +8,7 @@ const Main = () => {
     const [show ,setShow] = useState({
         opacity: 0
     })
+    const mainRef = useRef(null)
     const [title, setTitle] = useState('')
     const [bgColor , setBgColor] = useState({
         background: "#090909"
@@ -29,7 +30,7 @@ const Main = () => {
                 opacity: 0
             })
             setBgColor({
-                background :"#121212cc"
+                background: "#121212cc"
             })
             
         }
@@ -43,9 +44,15 @@ const Main = () => {
         }
     } , [])
 
+    console.log("main", mainRef.current)
+
     return(
-        <div className="main">
-            <div className="main-top" style={bgColor}>
+        <div className="main" ref={mainRef}>
+            <div className="main-top" style={{
+                ...bgColor,
+                marginLeft: "auto",
+                width: mainRef.current ? mainRef.current.clientWidth : "inherit",
+            }}>
                 <div className="navigation-arrows">
                     <div className="left-arrow"><LeftOutlined/></div>
                     <div className="right-arrow"><RightOutlined/></div>

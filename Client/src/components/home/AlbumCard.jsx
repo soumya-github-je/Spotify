@@ -1,10 +1,15 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState,useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 import "./albumcard.css"
+import { useFetchWebAPI} from "../../hooks"
 
-const AlbumCard = ({heading, songPostedYear, songDuration, artist}) => {
+const AlbumCard = ({heading, songPostedYear, songDuration, artist, playlist_id}) => {
+    
+   const {data, error, loading} = useFetchWebAPI(`v1/playlists/${playlist_id}/tracks`, "GET")
+   console.log("tracks", data, loading, error)
+   
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
     
@@ -33,17 +38,17 @@ const AlbumCard = ({heading, songPostedYear, songDuration, artist}) => {
                 </div>
                 
                 <div className="album-title-container">
-                    <p className="album-title-desc"  onClick={()=> navigate('/artist-album')}>{heading}</p>
-                    <p className="album-author" onClick={()=> navigate('/author-details')}>{artist}</p>
+                    <p className="album-title-desc"  onClick={()=> navigate('/artist-album')}>{heading || "song"}</p>
+                    <p className="album-author" onClick={()=> navigate('/author-details')}>{artist || "yrttdfghvhjgh"}</p>
                 </div>
             </div>
             <div className="album-name">
                
-                <p onClick={onClickHeading}>{heading}</p>
+                <p onClick={onClickHeading}>{heading || "song"} </p>
             </div>
             
                 <div className="album-date-added">
-                    <p>{songPostedYear}</p>
+                    <p>{null}</p>
                     <div className="hidden-icons">
                         {hover ? <div>
                     <a className="my-anchor-element-heart"><HeartOutlined style={{

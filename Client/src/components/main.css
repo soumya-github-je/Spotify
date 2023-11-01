@@ -1,40 +1,40 @@
-.main{
+.main {
+    /* position: relative; */
     margin: 0.6rem 0.1rem;
     border-radius: 0.5rem;
     flex: 0.8;
-    background: linear-gradient(#1f1e1e 1%, #0000 90%);
+    background: linear-gradient(#1f1e1e 10%, #0000 90%);
     overflow-x: scroll;
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
     height: 100vh;
-    
-    
-    
-}
-.main-top{
-    position: sticky;
+  }
+  .main-top {
+    position: fixed;
     z-index: 9999;
     width: inherit;
     top: 0;
+    right: 0px;
+    left: 0;
     display: flex;
     align-items: center;
     padding: 10px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    background: #090909;
+    background: #121212cc;
     transition: background 0.1s linear;
     -webkit-transition: background 0.1s linear;
     -moz-transition: background 0.1s linear;
     -ms-transition: background 0.1s linear;
     -o-transition: background 0.1s linear;
-}
-.navigation-arrows{
+  }
+  .navigation-arrows {
     display: flex;
     align-items: center;
-}
-.right-arrow, 
-.left-arrow{
+  }
+  .right-arrow,
+  .left-arrow {
     display: grid;
     place-items: center;
     background: #000;
@@ -47,26 +47,25 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-}
-.buttons-container button{
+  }
+  .buttons-container button {
     margin: 0 15px;
-}
-.sign-up-button,
-.log-in-button{
+  }
+  .sign-up-button,
+  .log-in-button {
     border: 0;
     outline: 0;
-    
+  
     font-size: 14px;
     background: transparent;
     color: #aaa;
     font-weight: 600;
     cursor: pointer;
-
-}
-.buttons-container {
+  }
+  .buttons-container {
     margin-left: auto;
   }
-.playlist-play-icon1{
+  .playlist-play-icon1 {
     display: flex;
     align-items: center;
     column-gap: 10px;
@@ -76,16 +75,16 @@
     -moz-transition: all 0.5s ease-in-out;
     -ms-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
-}
-.buttons-container button:hover{
+  }
+  .buttons-container button:hover {
     transform: scale(1.1);
     margin: 0 15px;
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
-}
-.log-in-button{
+  }
+  .log-in-button {
     background: #fff;
     color: #00000a;
     padding: 10px 20px;
@@ -94,23 +93,21 @@
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    
-}
-.sign-up-button:hover{
+  }
+  .sign-up-button:hover {
     color: #fff;
-    
-}
-.main::-webkit-scrollbar{
+  }
+  .main::-webkit-scrollbar {
     width: 10px;
-}
-.main::-webkit-scrollbar-thumb {
-background: #888; 
-transition: all ease-in-out 5000ms;
-  -webkit-transition: all ease-in-out 5000ms;
-  -moz-transition: all ease-in-out 5000ms;
-  -ms-transition: all ease-in-out 5000ms;
-  -o-transition: all ease-in-out 5000ms;
-} 
-.main::-webkit-scrollbar-thumb:hover {
-background: #555; 
-}
+  }
+  .main::-webkit-scrollbar-thumb {
+    background: #888;
+    transition: all ease-in-out 5000ms;
+    -webkit-transition: all ease-in-out 5000ms;
+    -moz-transition: all ease-in-out 5000ms;
+    -ms-transition: all ease-in-out 5000ms;
+    -o-transition: all ease-in-out 5000ms;
+  }
+  .main::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

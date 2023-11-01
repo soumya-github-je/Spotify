@@ -4,23 +4,27 @@ import { useEffect, useState } from "react"
 import AlbumCard from "../components/home/AlbumCard"
 import SongTopCard from "../components/songs/SongTopCard"
 import "./songDetails.css"
-import { useQuery } from "@apollo/client"
-import { GET_PLAYLIST } from "../gql/queries"
+import { useParams } from "react-router-dom"
+import { useFetchWebAPI } from "../hooks"
+import SongCard from "../components/home/SongCard"
+// import { useQuery } from "@apollo/client"
+// import { GET_PLAYLIST } from "../gql/queries"
 
 const SongDetails = () => {
     const [songHeadStyle, setSongHeadStyle] = useState({
         background: "transparent"
     })
 
-    const {data , loading , error} = useQuery(GET_PLAYLIST, {
-        variables:{
-            playlistId:{
-                in:["653f8ed104741b5f92f58cda"]
-            }
-        }
-    })
+    // 
+    const {id} = useParams()
+    const {data, error, loading} = useFetchWebAPI(`v1/playlists/${id}`, "GET")
+    console.log("Playlist", data, loading, error)
 
-    console.log("from server" , data, loading, error)
+    
+
+    // console.log("from server" , data, loading, error)
+
+
 
     useEffect(()  => {
         const handleScroll = () =>{
@@ -41,7 +45,7 @@ const SongDetails = () => {
                     var top = songListTop.getBoundingClientRect().top
                     if (top <= 75){
                         const event = new CustomEvent("reached_top", {
-                            detail: "Glance Out A Casement Window",
+                            detail: `${data?.type}`,
                         })
                         dispatchEvent(event)
                         
@@ -59,19 +63,17 @@ const SongDetails = () => {
                
     }, [])
 
-    if (loading) "Loading..."
-    if (error && !data) "Error occurred"
+    if (loading) return "Loading..."
+
     return(
         <div className="play-list-container">
             <SongTopCard 
-            playListImage = {data?.playlist[0]?.playListImage}
-            type= {data?.playlist[0]?.type}
-            heading = {data?.playlist[0]?.heading}
-            description = {data?.playlist[0]?.description}
-            likes = {data?.playlist[0]?.likes}
-            
-            songsCount= {data?.playlist[0]?.songsCount} 
-            songsDuration= {data?.playlist[0]?.songsDuration/60}
+                type={data?.type}
+                primaryColor={data?.primary_color}
+                image={data?.images[0]?.url}
+                // songs={data?.tracks}
+                name={data?.name}
+                description={data?.description}
             />  
             <div className="playlist-bottom-container">
                 <div className="playlist-icons-container">
@@ -109,9 +111,11 @@ const SongDetails = () => {
                 </div>
                
                     <ol className="album-card-container">
-                        {
-                            data && data?.playlist[0]?.songs.map((song) => <AlbumCard {...song} key= {song.artist}/>)
-                        }
+                    {
+                !loading ? error ? "Something went wrong" : data.tracks.items?.map((playlistTrackItems) =>
+                    <AlbumCard key={playlistTrackItems.id} playlistTrackItems={playlistTrackItems} playlist_id= {id}/>
+                ) : "loading.."
+            }
                     </ol>
             </div>
         </div>
