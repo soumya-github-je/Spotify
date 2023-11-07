@@ -3,7 +3,7 @@
     display: flex;
     font-weight: 400;
     padding-left: 0.5rem;
-    text-transform: capitalize;
+    
     font-size: 13px;
     cursor: pointer;
     color: #c3c4c6;
@@ -29,7 +29,8 @@
     
 }
 .album-image img{
-    width: 65%;
+   
+    width: 60px;
     object-fit: contain;
     
 }

@@ -8,19 +8,16 @@ import "./artistalbum.css"
 import SongCard from "../components/home/SongCard"
 import { useQuery } from "@apollo/client"
 import {GET_PLAYLIST } from "../gql/queries"
+import { useParams } from "react-router-dom"
+import { useFetchWebAPI } from "../hooks"
 
 const ArtistAlbum = () => {
+    const {id} = useParams()
+    const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
+    console.log("album",data, loading, error)
 
-    const {data , loading , error} = useQuery(GET_PLAYLIST, {
-        variables:{
-            playlistId:{
-                in:["653a4c2e710f575da91267c5"]
-            }
-        }
-    })
 
-    console.log("from server" , data, loading, error)
-
+   
     useEffect(()  => {
         const handleScroll = () =>{
             var songListTop = document.querySelector(".playlist-icons-container")
@@ -46,19 +43,30 @@ const ArtistAlbum = () => {
     }, [])
 
     if (loading) "Loading..."
-    if (error && !data) "Error occurred"
+    
+    var date = new Date(data?.album.release_date)
+    var year = date.getFullYear(); 
+
+    const ms = data?.duration_ms
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    const secondsUpto9 =seconds < 9 ? `0${seconds} `: seconds
+    const duration =  minutes + ':' + secondsUpto9;
+   
   return (
         <div className="artist-album-container song">
             <div className="song-top-card-container song-top-card" >
                 <SongTopCard 
-                  type = {data?.playlist[0]?.songs[0]?.type}
-                  heading={data?.playlist[0]?.songs[0]?.heading}
-                  authorImage= {data?.playlist[0]?.artist[0]?.profilePicture}
-                  authorName={data?.playlist[0]?.artist[0]?.name}
-                  songPostedYear={data?.playlist[0]?.songs[0]?.songPostedYear}
-                  songDuration={data?.playlist[0]?.songs[0]?.songDuration/60}
-                  likes={data?.playlist[0]?.likes}
-                  playListImage={data?.playlist[0]?.songs[0]?.songImage}
+                    type="Song"
+                    // primaryColor={data?.primary_color}
+                    image={data?.album.images[0]?.url}
+                    // // songs={data?.tracks}
+                    name={data?.name}
+                    authorName={data?.artists[0]?.name}
+                    songPostedYear={year}
+                    songDuration={duration}
+                    authorImage="https://i.scdn.co/image/ab6761610000f17840a7268dd742e5f63759b960"
+                    // description={data?.description}
                 />
             </div>
             

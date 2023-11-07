@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import "./songtopcard.css"
 
-const SongTopCard = ({ image, type, name, description, authorImage, primaryColor }) => {
+const SongTopCard = ({ image, type, name, description, authorImage, primaryColor, authorName ,songPostedYear, songDuration, songsDuration, songsCount,likes}) => {
     console.log(primaryColor)
     const styles = primaryColor?.toLowerCase() !== '#FFFFFF'.toLowerCase() ? {
         background: primaryColor
@@ -28,15 +28,15 @@ const SongTopCard = ({ image, type, name, description, authorImage, primaryColor
                 <div className="likes-and-songs-container">
                     <div className="spotify-logo">
                         <img src={authorImage || "https://i.scdn.co/image/ab67757000003b8255c25988a6ac314394d3fbf5"} alt="" />
-                        <Link to={"/"} className="playlist-spotyfy-text">Spotify <span className="span-dot">
+                        <Link to={"/"} className="playlist-spotyfy-text">{ authorName || "Spotify"} <span className="span-dot">
                                 •</span></Link>
                     </div>
                     
-                    {/* <p className="playlist-likes">{ songPostedYear|| null}</p>  
+                    <p className="playlist-likes">{ songPostedYear|| null}</p>  
                     <p className="playlist-likes">{ songDuration|| null} </p>          
                     <p className="playlist-no-of-songs">{songsCount || null}</p>
                     <p className="playlist-no-of-hours">{songsDuration|| null}</p>
-                    <p className="playlist-likes">{ likes|| null}</p> */}
+                    <p className="playlist-likes">{ likes|| null}</p>
 
                 </div>
             </div>  

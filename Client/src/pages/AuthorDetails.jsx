@@ -10,26 +10,27 @@ import "./artistalbum.css"
 import "./authordetails.css"
 import { useQuery } from '@apollo/client'
 import { GET_ARTIST } from '../gql/queries'
+import { useParams } from 'react-router-dom'
+import { useFetchWebAPI } from '../hooks'
 
 const AuthorDetails = () => {
+    
+    const {id} = useParams()
+    const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}`, "GET")
+    console.log("artist",data, loading, error)
 
-    const {data , loading , error} = useQuery(GET_ARTIST, {
-        variables:{
-            artistId:{
-                in:["653252c90853e2f38abac143"]
-            }
-        }
-    })
+    
 
-    console.log("from server" , data, loading, error)
-    if (loading) "Loading..."
-    if (error && !data) "Error occurred"
+    const image_url = data?.images[0]?.url
+    console.log(image_url)
+    
 
   return (
-    <div className='author-details-head-container'>
+    <div className='author-details-head-container' >
       
           <AuthorTopCard
-            artistName={data?.artist[0]?.name}
+            //    artistName= {data?.name} 
+            //    listernersCount = {data?.followers.total}
           />
       <div className="author-details-bottom-container">
           <div className="playlist-icons-container author-artist-icons-container">
@@ -57,10 +58,11 @@ const AuthorDetails = () => {
             <p className='popular-text-head'>Popular</p>
             <div className="artist-album-cards-containers">
                     
-                        {
-                            data && data?.artist[0]?.songs.map((song) => <ArtistAlbumCard {...song} key= {song.artist}/>)
-                        }
-                    
+                       {
+                        [1, 1,1,1,1,1,].map(ele => <ArtistAlbumCard
+                            
+                        />)
+                       }
                 
                 </div>
           </div>

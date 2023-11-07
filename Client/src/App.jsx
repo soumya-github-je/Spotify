@@ -30,8 +30,8 @@ function App() {
             <Route path='/' element={<Suspense><HomePage /></Suspense>} />
             <Route path='/song-listing' element={<Suspense><SongListingPage /></Suspense>} />
             <Route path='/song-details/:id' element={<Suspense><SongDetailsPage /></Suspense>} />
-            <Route path='/artist-album' element={<Suspense><ArtistAlbumPage /></Suspense>} />
-            <Route path='/author-details' element={<Suspense><AuthorDetailsPage /></Suspense>} />
+            <Route path='/artist-album/:id' element={<Suspense><ArtistAlbumPage /></Suspense>} />
+            <Route path='/author-details/:id' element={<Suspense><AuthorDetailsPage /></Suspense>} />
             <Route path='/search' element={<Suspense><SearchPage /></Suspense>} />
             <Route path='/search-card-details' element={<Suspense><SearchCardDetailsPage /></Suspense>} />
           </Route>

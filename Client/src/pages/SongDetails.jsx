@@ -113,7 +113,8 @@ const SongDetails = () => {
                     <ol className="album-card-container">
                     {
                 !loading ? error ? "Something went wrong" : data.tracks.items?.map((playlistTrackItems) =>
-                    <AlbumCard key={playlistTrackItems.id} playlistTrackItems={playlistTrackItems} playlist_id= {id}/>
+                    <AlbumCard key={playlistTrackItems.id} playlistTrackItems={playlistTrackItems}
+                    />
                 ) : "loading.."
             }
                     </ol>
