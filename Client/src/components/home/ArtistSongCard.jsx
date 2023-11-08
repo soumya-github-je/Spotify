@@ -6,16 +6,16 @@ import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 import { useFetchWebAPI } from "../../hooks"
 
-const ArtistAlbumCard = () => {
+const ArtistSongCard = () => {
 
  
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
 
     const {id} = useParams()
-    
-    const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}/top-tracks?market=IN&EN`, "GET")
-      console.log("top-tracks",data, loading, error)
+    console.log(id)
+    const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
+      console.log("songtracks",data, loading, error)
 
     
 
@@ -104,4 +104,4 @@ const ArtistAlbumCard = () => {
   )
 }
 
-export default ArtistAlbumCard
+export default ArtistSongCard

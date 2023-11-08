@@ -23,14 +23,13 @@ const AuthorDetails = () => {
 
     const image_url = data?.images[0]?.url
     console.log(image_url)
-    
 
   return (
-    <div className='author-details-head-container' >
+    <div className='author-details-head-container' style={{ backgroundImage: `url(${image_url})`}}>
       
           <AuthorTopCard
-            //    artistName= {data?.name} 
-            //    listernersCount = {data?.followers.total}
+               artistName= {data?.name} 
+               listernersCount = {data?.followers.total}
           />
       <div className="author-details-bottom-container">
           <div className="playlist-icons-container author-artist-icons-container">
@@ -57,61 +56,11 @@ const AuthorDetails = () => {
           <div className="author-details-popular-songs-container">
             <p className='popular-text-head'>Popular</p>
             <div className="artist-album-cards-containers">
-                    
-                       {
-                        [1, 1,1,1,1,1,].map(ele => <ArtistAlbumCard
-                            
-                        />)
-                       }
+                <ArtistAlbumCard/>
                 
                 </div>
           </div>
-          <div className="popular-releases-by-artist-container">
-                    <p className="artist-specialized-heading">Popular Releases</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1, 23, 3, 4, 5,].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e029b463f85df6ccaeb17407bcc'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Albums</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1].map(ele => <SongCard 
-                                key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e0206eac89920f156667cc3120e'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Singles and EPs</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1,3,4,5,6].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e0279a78cbb67c6a002d988a50f'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Fans also like</p>
-                    <div className="album-song-cards-container album-img">
-                        {
-                            [1,3,4,5,6].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e02b86fb2dba75c11d91078c051'
-                                songTitle="christian peterson -B"
-                                songDescription="Artist"
-                            />)
-                        }
-                    </div>
-                    
-                </div>
-      </div>
-      
+         </div>
     </div>
   )
 }

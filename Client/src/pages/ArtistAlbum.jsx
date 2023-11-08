@@ -1,7 +1,7 @@
 import { PlayCircleFilled,HeartOutlined ,EllipsisOutlined} from "@ant-design/icons"
 import { useEffect } from "react"
 import { Tooltip } from 'react-tooltip'
-import ArtistAlbumCard  from "../components/home/ArtistAlbumCard"
+import ArtistSongCard  from "../components/home/ArtistAlbumCard"
 import SongTopCard from "../components/songs/SongTopCard"
 
 import "./artistalbum.css"
@@ -95,13 +95,7 @@ const ArtistAlbum = () => {
                         
                     </div>
                 </div>
-                <div className="artist-album-signup-login-container">
-                    <p>Sign in to see lyrics and listen to the full track</p>
-                    <div className="lyrics-signup-and-login">
-                        <button className="lyrics-login-btn">Log in</button>
-                        <button className="lyrics-signup-btn">Sign up</button>
-                    </div>
-                </div>
+              
                 <div className="album-artist-image-and-info">
                     <div className="album-artist-img">
                         <img src="https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581" alt="" />
@@ -117,57 +111,13 @@ const ArtistAlbum = () => {
                     <h1>Janet Redger</h1>
                 </div>
                 <div className="artist-album-cards-containers">
-                    {
-                        [1, 2, 3, 4, 5].map(ele => <ArtistAlbumCard key={ele} 
-                            image="https://i.scdn.co/image/ab67616d00004851c1f1b784f7ef6ad1fd13e581"
-                            noOfLikes="13,345,776"
-                            songName="song name"
-                        />)
-                    }
-                
+                    <ArtistSongCard/>
                 </div>
                 <div className="popular-releases-by-artist-container">
-                    <p className="artist-specialized-heading">Popular Releases by Janet Redger</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1, 23, 3, 4, 5,].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e029b463f85df6ccaeb17407bcc'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Popular Albums by Janet Redger</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1].map(ele => <SongCard 
-                                key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e0206eac89920f156667cc3120e'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Popular Singles and EPs by Janet Redger</p>
-                    <div className="album-song-cards-container album-song">
-                        {
-                            [1,3,4,5,6].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e0279a78cbb67c6a002d988a50f'
-                                songTitle="Glance Out Of A Casement Window"
-                                songDescription="2023 • single"
-                            />)
-                        }
-                    </div>
-                    <p className="artist-specialized-heading">Fans also like</p>
-                    <div className="album-song-cards-container album-img">
-                        {
-                            [1,3,4,5,6].map(ele => <SongCard key={ele} 
-                                songImage='https://i.scdn.co/image/ab67616d00001e02b86fb2dba75c11d91078c051'
-                                songTitle="christian peterson -B"
-                                songDescription="Artist"
-                            />)
-                        }
-                    </div>
+                    
+                    
+                    
+                    
                     <div className="from-the-single-container">
                         <div className="from-the-single-img-container">
                             <img src="https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581" alt=""  className="from-the-single-img"/>
@@ -178,13 +128,13 @@ const ArtistAlbum = () => {
                         </div>
                     </div>
                     <div className="artist-album-cards-containers from-the-single-below-card">
-                        {
+                        {/* {
                             [1].map(ele => <ArtistAlbumCard key={ele} 
                                 image={null}
                                 title="Janet Redger"
                                 
                             />)
-                        }
+                        } */}
                     
                     </div>
                     <div className="©-and-℗-container">
