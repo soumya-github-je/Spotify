@@ -5,24 +5,24 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 import { useFetchWebAPI } from "../../hooks"
+const ArtistSongCard = (albumData) => {
 
-const ArtistSongCard = () => {
-
+  
  
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
-
-    const {id} = useParams()
-    console.log(id)
-    const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
-      console.log("songtracks",data, loading, error)
-
+    console.log(albumData.albumData)
     
+    const { data, loading, error } = useFetchWebAPI(`v1/artists/${albumData.albumData}/top-tracks?market=ES`, "GET")
+    console.log("album-tracks",data, loading, error)
+
 
   
     
   return (
-    <ol className="album-card-container">
+    <>
+    
+       <ol className="album-card-container">
       {
           !loading ? error ? "Something went wrong" : data?.tracks?.map((itemData) =>
           {
@@ -100,8 +100,12 @@ const ArtistSongCard = () => {
            : "loading.."
                         }
     </ol>
+    </>
+   
     
-  )
-}
+              
+            )
+    }
+          
 
 export default ArtistSongCard

@@ -1,9 +1,9 @@
 import { PlayCircleFilled,HeartOutlined ,EllipsisOutlined} from "@ant-design/icons"
 import { useEffect } from "react"
 import { Tooltip } from 'react-tooltip'
-import ArtistSongCard  from "../components/home/ArtistAlbumCard"
+import ArtistSongCard  from "../components/home/ArtistSongCard"
 import SongTopCard from "../components/songs/SongTopCard"
-
+import ArtistCard from "../components/songs/ArtistCard"
 import "./artistalbum.css"
 import SongCard from "../components/home/SongCard"
 import { useQuery } from "@apollo/client"
@@ -96,22 +96,17 @@ const ArtistAlbum = () => {
                     </div>
                 </div>
               
-                <div className="album-artist-image-and-info">
-                    <div className="album-artist-img">
-                        <img src="https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581" alt="" />
-                    </div>
-                    
-                    <div className="album-artist-info">
-                        <p>Artist</p>
-                        <p className="artist-name">Janet Redger</p>
-                    </div>
-                </div>
+                <ArtistCard
+                    artistId = {data?.artists[0].id}
+                />
                 <div className="popular-tracks-of-artist">
                     <p>Popular Tracks by</p>
-                    <h1>Janet Redger</h1>
+                    <h1>{data?.artists[0].name}</h1>
                 </div>
                 <div className="artist-album-cards-containers">
-                    <ArtistSongCard/>
+                    <ArtistSongCard
+                   albumData= {data?.album.artists[0].id}
+                    />
                 </div>
                 <div className="popular-releases-by-artist-container">
                     
