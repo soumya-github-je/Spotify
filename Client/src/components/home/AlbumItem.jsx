@@ -3,31 +3,25 @@ import { useNavigate} from "react-router-dom"
 import { Tooltip } from 'react-tooltip'
 import {HeartOutlined, EllipsisOutlined, CaretRightOutlined} from "@ant-design/icons"
 import "./albumcard.css"
-import { useFetchWebAPI} from "../../hooks"
+import "./albumitem.css"
+// import { useFetchWebAPI} from "../../hooks"
 
-const AlbumCard = ({playlistTrackItems}) => {
+const AlbumItem = (albumTrackItems) => {
+    console.log("AlbumItem", albumTrackItems)
     
-    const isoDate = playlistTrackItems.added_at;
-    const date = new Date(isoDate);
-    const now = Math.floor(Date.now() / 1000);
-    const isoTimestamp = Math.floor(date / 1000);
-    const daysAgo = (now - isoTimestamp) / 86400;
    
-    const ms = playlistTrackItems.track.duration_ms
+    const ms = albumTrackItems.albumTrackItems.duration_ms
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     const secondsUpto9 =seconds < 9 ? `0${seconds} `: seconds
     const duration =  minutes + ':' + secondsUpto9;
   
-    const id = playlistTrackItems.track.id
-    const artist_id = playlistTrackItems.track.artists[0].id
+    
     const navigate = useNavigate()
     const [hover, setHover] = useState(false)
+    const trackId = albumTrackItems.albumTrackItems.id
+    const artistId = albumTrackItems.albumTrackItems.artists[0].id
     
-    const onClickHeading = () => {
-        const id = playlistTrackItems.track.album.id
-        navigate(`/album/${id}`)
-    }
     
     return(
         <div className="album-list-container"
@@ -43,25 +37,21 @@ const AlbumCard = ({playlistTrackItems}) => {
                         : "1"
                 }
                 </span>
-                <div className="album-image-and-title" 
-            >
-                <div  className="album-image">
-                    <img src={playlistTrackItems.track.album.images[2].url} alt="" />
-                </div>
+                <div className="album-image-and-title">
+               
                 
                 <div className="album-title-container">
-                    <p className="album-title-desc"  onClick={()=> navigate(`/artist-album/${id}`)}>{playlistTrackItems.track.name}</p>
-                    <p className="album-author" onClick={()=> navigate(`/author-details/${artist_id}`)}>{playlistTrackItems.track.artists[0].name || "yrttdfghvhjgh"}</p>
+                    <p className="album-title-desc album-title"  onClick={()=> navigate(`/artist-album/${trackId}`)}>
+                        {albumTrackItems.albumTrackItems.name}</p>
+                    <p className="album-author artist-title" onClick={()=> navigate(`/author-details/${artistId}`)}>
+                    {albumTrackItems.albumTrackItems.artists[0].name}</p>
                 </div>
             </div>
-            <div className="album-name">
-               
-                <p onClick={onClickHeading}>{playlistTrackItems.track.album.name || "song"} </p>
-            </div>
+            
             
                 <div className="album-date-added">
-                    {daysAgo < 2 ? <p>{parseInt(daysAgo)} day ago</p>: <p>{parseInt(daysAgo)} days ago</p>}
-                    <div className="hidden-icons">
+                    
+                    <div className="hidden-icons  main-album-heart-icon">
                         {hover ? <div>
                     <a className="my-anchor-element-heart"><HeartOutlined style={{
                             fontSize: 17
@@ -79,7 +69,7 @@ const AlbumCard = ({playlistTrackItems}) => {
             <div className="album-time-container">
                 
                 
-                <p className="album-time">{duration}</p>
+                <p className="album-time album-duration">{duration}</p>
                 <div className="hidden-ellipsis-icon">
                     {hover ? 
                     <div>
@@ -101,4 +91,4 @@ const AlbumCard = ({playlistTrackItems}) => {
     )
 }
 
-export default AlbumCard
+export default AlbumItem

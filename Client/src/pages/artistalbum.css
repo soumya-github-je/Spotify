@@ -151,7 +151,39 @@
     -o-transform: scale(1.1);
 }
 
-
+.album-artist-image-and-info{
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    column-gap: 15px;
+    margin: 1.5rem 0;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.album-artist-img img{
+    height: 75px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    
+}
+.album-artist-info{
+    line-height: 1.5;
+}
+.album-artist-image-and-info:hover{
+    background: #262628;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.artist-name:hover{
+    text-decoration: underline;
+}
 
 .popular-tracks-of-artist{
     line-height: 1.5;

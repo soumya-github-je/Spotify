@@ -14,6 +14,7 @@ const SongDetailsPage = lazy(() => import("./pages/SongDetails"))
 const ArtistAlbumPage = lazy(() => import("./pages/ArtistAlbum"))
 const AuthorDetailsPage = lazy(() => import("./pages/AuthorDetails"))
 const SearchCardDetailsPage = lazy(() => import("./pages/SearchCardDetails"))
+const AlbumDetailsPage = lazy(() => import("./pages/AlbumDetails"))
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path='/song-details/:id' element={<Suspense><SongDetailsPage /></Suspense>} />
             <Route path='/artist-album/:id' element={<Suspense><ArtistAlbumPage /></Suspense>} />
             <Route path='/author-details/:id' element={<Suspense><AuthorDetailsPage /></Suspense>} />
+            <Route path='/album/:id' element={<Suspense><AlbumDetailsPage/></Suspense>} />
             <Route path='/search' element={<Suspense><SearchPage /></Suspense>} />
             <Route path='/search-card-details' element={<Suspense><SearchCardDetailsPage /></Suspense>} />
           </Route>

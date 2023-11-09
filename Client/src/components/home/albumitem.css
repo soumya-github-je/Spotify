@@ -1,0 +1,11 @@
+.album-title,
+.artist-title
+{
+    margin-left: 1rem;
+}
+.album-duration{
+    margin-left: 0.5rem;
+}
+.main-album-heart-icon{
+    margin-right: -5rem;
+}

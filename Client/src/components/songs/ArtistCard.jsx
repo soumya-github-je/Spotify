@@ -1,26 +1,27 @@
-import { useFetchWebAPI } from "../../hooks"
-import "./artistcard.css"
+// import { useFetchWebAPI } from "../../hooks"
+// import "./artistcard.css"
 
-const ArtistCard = (artistId) => {
-    console.log("artistid", artistId.artistId)
-    const id = artistId.artistId
+// const ArtistCard = (artistId) => {
+//     console.log("artistid", artistId.artistId)
+//     const id = artistId.artistId
 
-    const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}`, "GET")
-    console.log("artistData",data, loading, error)
-    const image = data?.images[0].url
+//     const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}`, "GET")
+//     console.log("artistData",data, loading, error)
+//     const image = data?.images[1]?.url
+//     console.log(image)
 
-  return (
-    <div className="album-artist-image-and-info">
-                    <div className="album-artist-img">
-                        <img src= {image} alt="" />
-                    </div>
+//   return (
+//     <div className="album-artist-image-and-info">
+//                     <div className="album-artist-img">
+//                         <img src= {image} alt="" />
+//                     </div>
                     
-                    <div className="album-artist-info">
-                        <p>Artist</p>
-                        <p className="artist-name">{data?.name}</p>
-                    </div>
-    </div>
-  )
-}
+//                     <div className="album-artist-info">
+//                         <p>Artist</p>
+//                         <p className="artist-name">{data?.name}</p>
+//                     </div>
+//     </div>
+//   )
+// }
 
-export default ArtistCard
+// export default ArtistCard

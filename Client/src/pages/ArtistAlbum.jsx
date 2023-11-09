@@ -3,15 +3,16 @@ import { useEffect } from "react"
 import { Tooltip } from 'react-tooltip'
 import ArtistSongCard  from "../components/home/ArtistSongCard"
 import SongTopCard from "../components/songs/SongTopCard"
-import ArtistCard from "../components/songs/ArtistCard"
+
 import "./artistalbum.css"
 import SongCard from "../components/home/SongCard"
 import { useQuery } from "@apollo/client"
 import {GET_PLAYLIST } from "../gql/queries"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
 
 const ArtistAlbum = () => {
+    const navigate = useNavigate()
     const {id} = useParams()
     const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
     console.log("album",data, loading, error)
@@ -65,7 +66,7 @@ const ArtistAlbum = () => {
                     authorName={data?.artists[0]?.name}
                     songPostedYear={year}
                     songDuration={duration}
-                    authorImage="https://i.scdn.co/image/ab6761610000f17840a7268dd742e5f63759b960"
+                    authorImage={data?.album.images[2]?.url}
                     // description={data?.description}
                 />
             </div>
@@ -96,9 +97,19 @@ const ArtistAlbum = () => {
                     </div>
                 </div>
               
-                <ArtistCard
-                    artistId = {data?.artists[0].id}
-                />
+                <div className="album-artist-image-and-info">
+                    <div className="album-artist-img">
+                        <img src= {data?.album.images[1]?.url} alt="" />
+                    </div>
+                    
+                    <div className="album-artist-info">
+                        <p>Artist</p>
+                        
+                            <p className="artist-name" onClick={()=> navigate(`/author-details/${data?.artists[0].id}`)}>{data?.artists[0].name}</p>
+                       
+                        
+                    </div>
+    </div>
                 <div className="popular-tracks-of-artist">
                     <p>Popular Tracks by</p>
                     <h1>{data?.artists[0].name}</h1>
