@@ -6,13 +6,54 @@ import AlbumItem from '../components/home/AlbumItem'
 import { ClockCircleOutlined, EllipsisOutlined, HeartOutlined, PlayCircleFilled } from '@ant-design/icons'
 import "./songDetails.css"
 import "./albumdetails.css"
+import { useEffect,useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 
 const AlbumDetails = () => {
+    const [songHeadStyle, setSongHeadStyle] = useState({
+        background: "transparent"
+    })
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/albums/${id}`, "GET")
     console.log("album", data, loading, error)
 
+    useEffect(()  => {
+        const handleScroll = () =>{
+            
+            var songListTop = document.querySelector(".playlist-icons-container")
+            var songHeading = document.querySelector('.album-songs-and-album-head-container');
+            if (songHeading) {
+                if (songHeading.getBoundingClientRect().top <=90) {
+                    setSongHeadStyle({
+                        background: "#000"
+                    })
+                } else {
+                    setSongHeadStyle({
+                        background: "transparent"
+                    })
+                }
+            }
+                if (songListTop){
+                    var top = songListTop.getBoundingClientRect().top
+                    if (top <= 65){
+                        const event = new CustomEvent("reached_top", {
+                            detail: data?.name,
+                        })
+                        dispatchEvent(event)
+                        
+                    }else{
+                        dispatchEvent(new CustomEvent("removed_top"))
+                    }
+                }
+            }
+                const main = document.querySelector(".main")
+                if (main){
+                    main.addEventListener("scroll", handleScroll)
+                }
+                return () => main&& main.removeEventListener("scroll", handleScroll)
+
+               
+    }, [])
 
   return (
     <div>
@@ -48,7 +89,7 @@ const AlbumDetails = () => {
                         
                     </div>
                 </div>
-            <div className="album-songs-and-album-head-container">
+            <div className="album-songs-and-album-head-container"  style={songHeadStyle}>
                     <div className="hash-and-title-head">
                         <p className="hash-head">#</p>
                         <p className="title-head">Title</p>

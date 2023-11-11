@@ -1,6 +1,6 @@
 .album-songs-and-album-head-container{
     position: sticky;
-    top: 75px;
+    top: 65px;
     z-index: 9999;
     display: flex;
     justify-content: space-between;
@@ -10,6 +10,7 @@
     color: #b1b1b1;
     font-size: 15px;
     padding-right: 1.2rem;
+    background: #000;
     margin-bottom: 10px;
     border-bottom: solid 0.5px #333;
 }

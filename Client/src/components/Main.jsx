@@ -8,7 +8,7 @@ const Main = () => {
     const [show ,setShow] = useState({
         opacity: 0
     })
-    const mainRef = useRef(null)
+    const mainRef = useRef("")
     const [title, setTitle] = useState('')
     const [bgColor , setBgColor] = useState({
         background: "#090909"
@@ -51,6 +51,7 @@ const Main = () => {
             <div className="main-top" style={{
                 ...bgColor,
                 marginLeft: "auto",
+                
                 width: mainRef.current ? mainRef.current.clientWidth : "inherit",
             }}>
                 <div className="navigation-arrows">

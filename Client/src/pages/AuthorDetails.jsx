@@ -2,7 +2,7 @@ import React from 'react'
 import AuthorTopCard from '../components/songs/AuthorTopCard'
 import ArtistAlbumCard  from "../components/home/ArtistAlbumCard"
 import SongCard from "../components/home/SongCard"
-
+import { useEffect, useState } from "react"
 import { PlayCircleFilled,EllipsisOutlined} from "@ant-design/icons"
 import { Tooltip } from 'react-tooltip'
 import "./songDetails.css"
@@ -20,7 +20,7 @@ const AuthorDetails = () => {
     console.log("artist",data, loading, error)
 
     
-
+    
     const image_url = data?.images[0]?.url
     console.log(image_url)
 

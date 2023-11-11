@@ -28,10 +28,11 @@ const SongDetails = () => {
 
     useEffect(()  => {
         const handleScroll = () =>{
+            
             var songListTop = document.querySelector(".playlist-icons-container")
             var songHeading = document.querySelector('.playlist-songs-and-album-head-container');
             if (songHeading) {
-                if (songHeading.getBoundingClientRect().top <= 90) {
+                if (songHeading.getBoundingClientRect().top <=90) {
                     setSongHeadStyle({
                         background: "#000"
                     })
@@ -43,9 +44,9 @@ const SongDetails = () => {
             }
                 if (songListTop){
                     var top = songListTop.getBoundingClientRect().top
-                    if (top <= 75){
+                    if (top <= 68){
                         const event = new CustomEvent("reached_top", {
-                            detail: `${data?.type}`,
+                            detail: data?.name,
                         })
                         dispatchEvent(event)
                         

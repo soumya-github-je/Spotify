@@ -1,5 +1,6 @@
 .playlist-head-container{
     background: linear-gradient(#819caa,#4c5c64);
+    padding-top: 5rem;
 }
 .song-details-container{
     display: flex;

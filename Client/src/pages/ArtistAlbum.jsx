@@ -24,9 +24,9 @@ const ArtistAlbum = () => {
             var songListTop = document.querySelector(".playlist-icons-container")
                 if (songListTop){
                     var top = songListTop.getBoundingClientRect().top
-                    if (top <= 75){
+                    if (top <= 70){
                         const event = new CustomEvent("reached_top", {
-                            detail: "Glance Out A Casement Window",
+                            detail: data?.name,
                         })
                         dispatchEvent(event)
                     }else{
@@ -126,11 +126,11 @@ const ArtistAlbum = () => {
                     
                     <div className="from-the-single-container">
                         <div className="from-the-single-img-container">
-                            <img src="https://i.scdn.co/image/ab67616d00001e02c1f1b784f7ef6ad1fd13e581" alt=""  className="from-the-single-img"/>
+                            <img src={data?.album.images[1]?.url} alt=""  className="from-the-single-img"/>
                         </div>
                         <div className="from-the-single-info-container">
                             <p>From the single</p>
-                            <p className="from-the-single-desc">Glance Out A Casement Window</p>
+                            <p className="from-the-single-desc">{data?.name}</p>
                         </div>
                     </div>
                     <div className="artist-album-cards-containers from-the-single-below-card">
@@ -144,8 +144,8 @@ const ArtistAlbum = () => {
                     
                     </div>
                     <div className="©-and-℗-container">
-                        <p>© Janet Redger</p>
-                        <p>℗ Janet Redger</p>
+                        <p>©{data?.artists[0].name} </p>
+                        <p>℗{data?.artists[0].name} </p>
                     </div>
                 </div>
 

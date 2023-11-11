@@ -34,7 +34,7 @@
 
 .playlist-songs-and-album-head-container{
     position: sticky;
-    top: 75px;
+    top: 65px;
     z-index: 9999;
     display: flex;
     padding-left: 0.5rem;

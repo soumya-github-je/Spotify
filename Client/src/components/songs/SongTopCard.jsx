@@ -18,7 +18,7 @@ const SongTopCard = ({ image, type, name, description, authorImage, primaryColor
     style={styles}>
                 <div className="song-details-container">
             <div className="playlist-image">
-                <img src={image || "https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6" }alt="" />    
+                <img src={image || null} alt="" />    
             </div>
             <div className="play-list-info">
                 <p className="playlist-text">{type || null}</p>
