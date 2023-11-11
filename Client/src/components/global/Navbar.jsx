@@ -2,9 +2,14 @@ import "./Navbar.css"
 import { useNavigate } from "react-router-dom"
 import {HomeFilled, SearchOutlined,AppstoreAddOutlined,PlusOutlined,GlobalOutlined} from "@ant-design/icons"
 import {IconButton} from "@mui/material"
+import { useSelector, useDispatch} from "react-redux"
+import {onClickHome, onClickSearch } from "../../spotify/spotifySlice"
 
 const Navbar = () => {
     const navigate = useNavigate()
+    const state = useSelector((state) => state.spotify)
+    const dispatch = useDispatch()
+    
     return(
         <div className="navbar">
             <div className="navigation">
@@ -12,13 +17,17 @@ const Navbar = () => {
                    
                         <li className="nav-items" 
                             onClick={() => navigate("/")}
-                        >
+                        ><div onClick={()=> dispatch(onClickHome())}>
                             <HomeFilled />
                             <span>Home</span>
+                        </div>
+                            
                         </li>
                    
                         <li className="nav-items search"
-                            onClick={() => navigate("/search")}
+                            // onClick={() => navigate("/search"}
+                            onClick={()=> dispatch(onClickSearch())}
+                            
                         >
                             <SearchOutlined />
                             <span>Search</span>

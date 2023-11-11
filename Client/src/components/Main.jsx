@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
-import {LeftOutlined, RightOutlined, PlayCircleFilled} from "@ant-design/icons"
+import { Outlet, useNavigate } from "react-router-dom";
+import {LeftOutlined, RightOutlined, PlayCircleFilled, SearchOutlined} from "@ant-design/icons"
 import { useState, useEffect, useRef } from "react";
 import Footer from "./global/Footer"
+import { useSelector, useDispatch } from "react-redux";
 import "./main.css"
 
 const Main = () => {
@@ -13,6 +14,9 @@ const Main = () => {
     const [bgColor , setBgColor] = useState({
         background: "#090909"
     })
+    const navigate = useNavigate()
+    const state = useSelector((state)=> state.spotify)
+    console.log("searchStatus", state.isSearchActive)
 
     useEffect(()=> {
         const handleReachedEvent = (event) => {
@@ -55,9 +59,17 @@ const Main = () => {
                 width: mainRef.current ? mainRef.current.clientWidth : "inherit",
             }}>
                 <div className="navigation-arrows">
-                    <div className="left-arrow"><LeftOutlined/></div>
-                    <div className="right-arrow"><RightOutlined/></div>
+                    <div className="left-arrow" onClick={()=> navigate(-1)}><LeftOutlined/></div>
+                    <div className="right-arrow" onClick={()=> navigate(1)}><RightOutlined/></div>
                 </div>
+                
+                {state.isSearchActive && <div className="search-input-icon-container">
+                    <div className="search-icon-container">
+                    <SearchOutlined className="search-icon"/>
+                        </div>
+                    
+                    <input type="search" className="search-input" placeholder="What do you want to listen to?"/>
+                    </div>}
                 <div className="playlist-play-icon1" style={show}>
                         <PlayCircleFilled 
                         style={{
