@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Footer from "./global/Footer"
 import { useSelector, useDispatch } from "react-redux";
 import "./main.css"
+import { onChangeSearchInput } from "../spotify/spotifySlice";
 
 const Main = () => {
     const [show ,setShow] = useState({
@@ -16,7 +17,13 @@ const Main = () => {
     })
     const navigate = useNavigate()
     const state = useSelector((state)=> state.spotify)
-    console.log("searchStatus", state.isSearchActive)
+
+    console.log("search-input", state.searchInput)
+    const dispatch = useDispatch()
+
+    const onChange = e => {
+        dispatch(onChangeSearchInput(e.target.value));
+      }
 
     useEffect(()=> {
         const handleReachedEvent = (event) => {
@@ -68,7 +75,7 @@ const Main = () => {
                     <SearchOutlined className="search-icon"/>
                         </div>
                     
-                    <input type="search" className="search-input" placeholder="What do you want to listen to?"/>
+                    <input type="search" className="search-input" value={state.searchInput} onChange={onChange} placeholder="What do you want to listen to?"/>
                     </div>}
                 <div className="playlist-play-icon1" style={show}>
                         <PlayCircleFilled 

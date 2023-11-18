@@ -22,7 +22,7 @@ const SongTopCard = ({ image, type, name, description, authorImage, primaryColor
             </div>
             <div className="play-list-info">
                 <p className="playlist-text">{type || null}</p>
-                <h1 className="playlist-head">{name || "Peaceful Piano"}</h1>
+                <h1 className="playlist-head">{name || ""}</h1>
                 <p className="palylist-desc">{ description || null}</p>
                 
                 <div className="likes-and-songs-container">

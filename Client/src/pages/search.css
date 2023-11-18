@@ -1,18 +1,50 @@
 .search-main-container{
-    /* padding-top: 2.7rem; */
-    padding-left: 10px;
+    padding-right: 20px;
    
 }
-.browse-all-text{
-    font-size: 25px;
-    font-weight: 800;
-    margin-left: 1rem;
-    margin-bottom: 5px;
-}
-.search-cards-container{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+.search-types-container{
+    position: fixed;
     
+}
+.button{
+    margin: 5px;
+    background-color: #303030;
+    border-width: 0;
+    height: 30px;
+    padding: 0 13px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    
+}
+.button:hover{
+    background-color: #404040;
+}
+.searched-values-main-container{
+    display: flex;
+    margin-left: 25px;
+}
+.searched-values-main-container-search-card{
+    width: 35%;
+    margin-right: 1rem;
+    
+}
+.searched-values-main-container-search-tracks{
+    width: 65%;
+   
+}
+.search-main-headings{
+    font-size: 22px;
+    font-weight: bold;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    margin-left: 25px;
+}
+.songs{
+    margin-left: 0;
 }

@@ -28,6 +28,8 @@ const AlbumCard = ({playlistTrackItems}) => {
         const id = playlistTrackItems.track.album.id
         navigate(`/album/${id}`)
     }
+
+    
     
     return(
         <div className="album-list-container"

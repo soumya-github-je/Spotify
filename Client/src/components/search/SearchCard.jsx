@@ -1,18 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import "./searchcard.css"
-const SearchCard = () => {
-    const navigate = useNavigate()
+import { useNavigate } from 'react-router-dom'
+
+const SearchCard = (artistItem) => {
+  const navigate = useNavigate()
+  console.log(artistItem)
+  const id = artistItem?.artistItem?.artists[0]?.id
   return (
-    
-        <div className='search-card-container' 
-            onClick={() => navigate("/search-card-details")}
-        >
-                <p className="serach-card-title">podcasts</p>
-                <img src="https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" alt=""  className="search-card-image"/>
-        </div>
-    
-    
+    <div className='search-card-container' onClick={()=> navigate(`/author-details/${id}`)}>
+      <img className='search-card-artist-img' src={artistItem.artistItem.album.images[0].url} alt="" />
+      <h1 className='searched-value'>{artistItem?.artistItem?.name}</h1>
+      <p className='search-card-artist'>{artistItem?.artistItem?.artists[0]?.name}</p>
+    </div>
   )
 }
 

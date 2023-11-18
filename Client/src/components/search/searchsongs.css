@@ -1,0 +1,90 @@
+
+.search-album-list-container{
+    
+    display: flex;
+    font-weight: 400;
+    padding-left: 0.5rem;
+    
+    font-size: 13px;
+    cursor: pointer;
+    color: #c3c4c6;
+    align-items: center;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-right: 0;
+    margin-left: 1.5rem;
+    
+}
+.search-album-image-and-title{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 0.4;
+    
+}
+
+.search-album-image{
+    display: grid;
+    place-items: center;
+    
+    
+}
+.search-album-image img{
+   
+    width: 60px;
+    object-fit: contain;
+    
+}
+.search-album-title-container{
+    line-height: 1.5;
+}
+.search-album-title-desc{
+    color: #fff;
+    flex: 0.84;
+    font-size: 14px;
+}
+.search-album-title-desc:hover,
+.search-album-author:hover,
+.search-album-name:hover{
+    text-decoration: underline;
+}
+.search-album-author{
+    font-size: 13px;
+}
+.search-album-name{
+    flex: 0.42;
+}
+
+.search-album-time-container{
+    display: flex;
+    
+}
+.search-serial-no{
+    flex: 0.025;
+}
+.search-album-time{
+    flex: 0.05;
+}
+
+.search-album-list-container:hover{
+    background: #313133;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.search-hidden-icons{
+    margin-left: auto;
+    margin-right: 2%;
+}
+.search-album-time-container{
+    flex: 0.21;
+    
+}
+.search-hidden-ellipsis-icon{
+   margin-left: 10%;
+    
+}

@@ -1,0 +1,39 @@
+.search-song-main-container{
+    
+}
+.search-playlist-songs-and-album-head-container{
+    position: sticky;
+    top: 130px;
+    z-index: 9999;
+    display: flex;
+    padding-left: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    color: #b1b1b1;
+    font-size: 15px;
+    padding-right: 1.2rem;
+    background: #020202;
+    margin-bottom: 10px;
+    border-bottom: solid 0.5px #333;
+    
+    
+}
+.hash-and-title-head{
+    flex: 0.4;
+    display: flex;
+    margin-left: 1.5rem;
+}
+
+.album-head{
+    flex: 0.375;
+}
+.date-added-head{
+    flex: 0.35;
+}
+.hash-head{
+    flex: 0.1;
+    font-size: 16px;
+}
+.clock-icon{
+    flex: 0.1;
+}

@@ -1,0 +1,50 @@
+.search-tracks-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    margin: 5px;
+    width: 85%;
+    color: #c3c4c6;
+    cursor: pointer;
+}
+.search-track-img-names-container{
+    display: flex;
+    align-items: center;
+}
+.search-track-song-image{
+    width: 40px;
+    margin-right: 15px;
+}
+.search-track-song-name,
+.search-track-artist-name,
+.search-track-duration{
+    font-size: 15px;
+}
+.search-track-song-name{
+    color: #fff;
+}
+.search-track-artist-name:hover,
+.search-track-song-name:hover{
+    text-decoration: underline;
+}
+
+.search-track-artist-name,
+.search-track-duration{
+    
+    font-size: 14px;
+}
+.search-track-duration{
+
+}
+.search-tracks-container:hover{
+    background: #313133;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

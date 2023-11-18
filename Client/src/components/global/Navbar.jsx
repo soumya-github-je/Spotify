@@ -25,12 +25,13 @@ const Navbar = () => {
                         </li>
                    
                         <li className="nav-items search"
-                            // onClick={() => navigate("/search"}
+                            
                             onClick={()=> dispatch(onClickSearch())}
                             
                         >
+                           
                             <SearchOutlined />
-                            <span>Search</span>
+                            <span   onClick={() => navigate("/search")}>Search</span>
                         </li>
                    </ul>
             </div>

@@ -31,12 +31,19 @@
     font-family: "Heebo";
     font-size: 5.5rem;
     font-weight: 900;
+    overflow: hidden;
+    line-height: 1.6;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .palylist-desc{
     color: #dcdbdb;
     font-size: 14px;
     font-weight: 300;
     margin: 13px 0;
+    
 }
 .likes-and-songs-container{
     display: flex;

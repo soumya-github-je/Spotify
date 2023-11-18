@@ -1,0 +1,30 @@
+.search-type-container{
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 4rem;
+    position: sticky;
+    top: 65px;
+    
+    margin-right: -25px;
+    z-index: 9999;
+    background: #090909;
+}
+.search-type-button{
+    background-color: #232323;
+    outline: none;
+    
+    margin: 5px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-width: 0px;
+    color: #fff;
+    padding: 8px 13px;
+    font-size: 14px;
+}
+.search-type-button:hover{
+    background-color: #333333;
+}
