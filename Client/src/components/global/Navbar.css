@@ -34,11 +34,12 @@
 .search:hover{
     color: #fff;
 }
-.library-top-section span{
-    color: #A7A7A7;
-}
+
 .your-library-container{
     height: 100%;
+}
+.library-top-section span{
+    color: #A7A7A7;
 }
 .library-top-section{
     cursor: pointer;

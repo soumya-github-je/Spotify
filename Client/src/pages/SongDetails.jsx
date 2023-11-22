@@ -7,6 +7,8 @@ import "./songDetails.css"
 import { useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
 import SongCard from "../components/home/SongCard"
+import { useDispatch, useSelector } from "react-redux"
+import {onClickSavePlaylist } from "../spotify/spotifySlice"
 // import { useQuery } from "@apollo/client"
 // import { GET_PLAYLIST } from "../gql/queries"
 
@@ -14,7 +16,9 @@ const SongDetails = () => {
     const [songHeadStyle, setSongHeadStyle] = useState({
         background: "transparent"
     })
+    const state = useSelector((state)=> state.spotify)
 
+    const dispatch = useDispatch()
     // 
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/playlists/${id}`, "GET")
@@ -22,9 +26,7 @@ const SongDetails = () => {
 
     
 
-    // console.log("from server" , data, loading, error)
-
-
+    console.log("playlist-saved", state.addPlaylistsToLibrery)
 
     useEffect(()  => {
         const handleScroll = () =>{
@@ -66,6 +68,9 @@ const SongDetails = () => {
 
     if (loading) return "Loading..."
 
+    
+    
+
     return(
         <div className="play-list-container">
             <SongTopCard 
@@ -88,7 +93,7 @@ const SongDetails = () => {
                         
                     </div>
                     <div>
-                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon"/></a>
+                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon" onClick={()=>dispatch(onClickSavePlaylist(data))}/></a>
                     <Tooltip anchorSelect=".my-anchor-element1" place="top" tipPointerPosition="middle">
                         Save to Your Library
                     </Tooltip>   

@@ -10,14 +10,18 @@ import { useQuery } from "@apollo/client"
 import {GET_PLAYLIST } from "../gql/queries"
 import { useNavigate, useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
+import { useDispatch, useSelector } from "react-redux"
+import {onClickSaveTrack } from "../spotify/spotifySlice"
 
 const ArtistAlbum = () => {
     const navigate = useNavigate()
+    const state = useSelector((state)=> state.spotify)
+    const dispatch = useDispatch()
     const {id} = useParams()
     const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
     console.log("album",data, loading, error)
 
-
+    console.log("song-saved", state.addTracksToLibrery)
    
     useEffect(()  => {
         const handleScroll = () =>{
@@ -83,7 +87,7 @@ const ArtistAlbum = () => {
                         
                     </div>
                     <div>
-                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon"/></a>
+                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon"  onClick={()=>dispatch(onClickSaveTrack(data))}/></a>
                     <Tooltip anchorSelect=".my-anchor-element1" place="top" tipPointerPosition="middle">
                         Save to Your Library
                     </Tooltip>   

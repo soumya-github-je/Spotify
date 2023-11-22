@@ -7,7 +7,10 @@ export const spotifyClice = createSlice({
     initialState:{
         isSearchActive: false,
         searchInput:"",
-        searchType:""
+        searchType:"",
+        addTracksToLibrery: [],
+        addAlbumsToLibrery:[],
+        addPlaylistsToLibrery:[]
     },
     reducers:{
         onClickSearch:(state)=>{
@@ -34,6 +37,15 @@ export const spotifyClice = createSlice({
         onClickSongs:(state)=>{
             state.searchType="track"
         },
+        onClickSaveTrack:(state, action)=>{
+            state.addTracksToLibrery.push(action.payload)
+        },
+        onClickSaveAlbum:(state, action)=>{
+            state.addAlbumsToLibrery.push(action.payload)
+        },
+        onClickSavePlaylist:(state, action)=>{
+            state.addPlaylistsToLibrery.push(action.payload)
+        }
         
     }
 })
@@ -46,7 +58,10 @@ export const {
     onClickAlbums,
     onClickArtists,
     onClickPlaylists,
-    onClickSongs
+    onClickSongs,
+    onClickSaveTrack,
+    onClickSavePlaylist,
+    onClickSaveAlbum
 } = spotifyClice.actions
 
 export default spotifyClice.reducer

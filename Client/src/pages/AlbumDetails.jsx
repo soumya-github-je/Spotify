@@ -8,14 +8,20 @@ import "./songDetails.css"
 import "./albumdetails.css"
 import { useEffect,useState } from 'react'
 import { Tooltip } from 'react-tooltip'
+import { useDispatch, useSelector } from 'react-redux'
+import { onClickSaveAlbum } from '../spotify/spotifySlice'
 
 const AlbumDetails = () => {
     const [songHeadStyle, setSongHeadStyle] = useState({
         background: "transparent"
     })
+    const state = useSelector((state)=> state.spotify)
+    const dispatch = useDispatch()
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/albums/${id}`, "GET")
     console.log("album", data, loading, error)
+
+    console.log("album-saved", state.addAlbumsToLibrery)
 
     useEffect(()  => {
         const handleScroll = () =>{
@@ -76,7 +82,7 @@ const AlbumDetails = () => {
                         
                     </div>
                     <div>
-                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon"/></a>
+                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon" onClick={()=> dispatch(onClickSaveAlbum(data))}/></a>
                     <Tooltip anchorSelect=".my-anchor-element1" place="top" tipPointerPosition="middle">
                         Save to Your Library
                     </Tooltip>   
