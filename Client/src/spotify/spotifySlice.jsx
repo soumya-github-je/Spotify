@@ -10,7 +10,9 @@ export const spotifyClice = createSlice({
         searchType:"",
         addTracksToLibrery: [],
         addAlbumsToLibrery:[],
-        addPlaylistsToLibrery:[]
+        addPlaylistsToLibrery:[],
+        isSaveActive: false,
+        playSongArray: []
     },
     reducers:{
         onClickSearch:(state)=>{
@@ -39,12 +41,30 @@ export const spotifyClice = createSlice({
         },
         onClickSaveTrack:(state, action)=>{
             state.addTracksToLibrery.push(action.payload)
+            state.isSaveActive = !state.isSaveActive
         },
         onClickSaveAlbum:(state, action)=>{
             state.addAlbumsToLibrery.push(action.payload)
+            state.isSaveActive = !state.isSaveActive
         },
         onClickSavePlaylist:(state, action)=>{
             state.addPlaylistsToLibrery.push(action.payload)
+            state.isSaveActive = !state.isSaveActive
+        },
+        onClickUnSaveTrack:(state, action)=>{
+            state.addTracksToLibrery.splice(action.payload)
+            state.isSaveActive = !state.isSaveActive
+        },
+        onClickUnSaveAlbum:(state, action)=>{
+            state.addAlbumsToLibrery.splice(action.payload)
+            state.isSaveActive = !state.isSaveActive
+        },
+        onClickUnSavePlaylist:(state, action)=>{
+            state.addPlaylistsToLibrery.splice(action.payload)
+            state.isSaveActive = !state.isSaveActive
+        },
+        onClickPlaySongButton: (state, action)=> {
+            state.playSongArray.splice(0,1,action.payload)
         }
         
     }
@@ -61,7 +81,10 @@ export const {
     onClickSongs,
     onClickSaveTrack,
     onClickSavePlaylist,
-    onClickSaveAlbum
+    onClickSaveAlbum,
+    onClickUnSavePlaylist,
+    onClickPlaySongButton
+    
 } = spotifyClice.actions
 
 export default spotifyClice.reducer

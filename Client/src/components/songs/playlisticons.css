@@ -1,0 +1,28 @@
+
+.playlist-icons-container{
+    display: flex;
+    column-gap: 1.5rem;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem                                                                                      ;
+}
+.playlist-play-icon:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+.playlist-spotyfy-text:hover{
+    text-decoration: underline;
+}
+.heart-oulined-icon,
+.elipises-outlined-icon{
+    color: #aaa;
+    font-size: 30px;
+
+}
+.heart-oulined-icon:hover,
+.elipises-outlined-icon:hover{
+    color: #fff;
+}

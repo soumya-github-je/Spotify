@@ -1,4 +1,4 @@
-import { PlayCircleFilled,HeartOutlined ,EllipsisOutlined, ClockCircleOutlined} from "@ant-design/icons"
+import { PlayCircleFilled,HeartOutlined ,EllipsisOutlined, ClockCircleOutlined, HeartFilled} from "@ant-design/icons"
 import { Tooltip } from 'react-tooltip'
 import { useEffect, useState } from "react"
 import AlbumCard from "../components/home/AlbumCard"
@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
 import SongCard from "../components/home/SongCard"
 import { useDispatch, useSelector } from "react-redux"
-import {onClickSavePlaylist } from "../spotify/spotifySlice"
+import {onClickPlaySongButton, onClickSavePlaylist, onClickUnSavePlaylist } from "../spotify/spotifySlice"
 // import { useQuery } from "@apollo/client"
 // import { GET_PLAYLIST } from "../gql/queries"
 
@@ -80,11 +80,13 @@ const SongDetails = () => {
                 // songs={data?.tracks}
                 name={data?.name}
                 description={data?.description}
+                songPostedYear= {data?.followers.total}
             />  
             <div className="playlist-bottom-container">
                 <div className="playlist-icons-container">
                     <div className="playlist-play-icon">
                         <PlayCircleFilled 
+                        onClick={()=> dispatch(onClickPlaySongButton(data?.tracks))}
                         style={{
                             fontSize: 55,
                             color: "#1BD760"
@@ -92,12 +94,20 @@ const SongDetails = () => {
                             }}/>
                         
                     </div>
-                    <div>
-                    <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon" onClick={()=>dispatch(onClickSavePlaylist(data))}/></a>
+                    {/* {!state.isSaveActive ?  :  <div><a className="my-anchor-element1"><HeartFilled className="heart-oulined-icon"
+                     /></a>
                     <Tooltip anchorSelect=".my-anchor-element1" place="top" tipPointerPosition="middle">
-                        Save to Your Library
+                        Saved to Your Library
                     </Tooltip>   
+                    </div>} */}
+                    <div>
+                        <a className="my-anchor-element1"><HeartOutlined  className="heart-oulined-icon"
+                        onClick={()=>dispatch(onClickSavePlaylist(data))}/></a>
+                        <Tooltip anchorSelect=".my-anchor-element1" place="top" tipPointerPosition="middle">
+                            Save to Your Library
+                        </Tooltip>   
                     </div>
+                    
                     <div>
                         <a className="my-anchor-element2"><EllipsisOutlined  className="elipises-outlined-icon"/></a>
                         <Tooltip anchorSelect=".my-anchor-element2" place="top" tipPointerPosition="middle">

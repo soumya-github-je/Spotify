@@ -11,7 +11,7 @@ import {GET_PLAYLIST } from "../gql/queries"
 import { useNavigate, useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
 import { useDispatch, useSelector } from "react-redux"
-import {onClickSaveTrack } from "../spotify/spotifySlice"
+import {onClickPlaySongButton, onClickSaveTrack } from "../spotify/spotifySlice"
 
 const ArtistAlbum = () => {
     const navigate = useNavigate()
@@ -79,6 +79,7 @@ const ArtistAlbum = () => {
                 <div className="playlist-icons-container">
                     <div className="playlist-play-icon">
                         <PlayCircleFilled 
+                        
                         style={{
                             fontSize: 55,
                             color: "#1BD760"

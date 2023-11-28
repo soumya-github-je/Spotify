@@ -9,7 +9,7 @@ import "./albumdetails.css"
 import { useEffect,useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 import { useDispatch, useSelector } from 'react-redux'
-import { onClickSaveAlbum } from '../spotify/spotifySlice'
+import { onClickPlaySongButton, onClickSaveAlbum } from '../spotify/spotifySlice'
 
 const AlbumDetails = () => {
     const [songHeadStyle, setSongHeadStyle] = useState({
@@ -74,6 +74,7 @@ const AlbumDetails = () => {
             <div className="playlist-icons-container">
                     <div className="playlist-play-icon">
                         <PlayCircleFilled 
+                        
                         style={{
                             fontSize: 55,
                             color: "#1BD760"

@@ -73,13 +73,13 @@ const Navbar = () => {
                 </div> */}
                 <div className="library-middle-setion">
                     {
-                        dataTracks.map((eachItem)=><LibreryTracks eachItem={eachItem} key = {eachItem.id}/>)
+                        dataTracks.map((eachItem)=><LibreryTracks eachItem={eachItem} key = {eachItem}/>)
                     }
                     {
-                        dataPlalists.map((eachItem)=><LibreryPlaylists eachItem={eachItem} key = {eachItem.id}/>)
+                        dataPlalists.map((eachItem)=><LibreryPlaylists eachItem={eachItem} key = {eachItem}/>)
                     }
                     {
-                        dataalbums.map((eachItem)=><LibreryAlbums eachItem={eachItem} key = {eachItem.id}/>)
+                        dataalbums.map((eachItem)=><LibreryAlbums eachItem={eachItem} key = {eachItem}/>)
                     }
                 </div>
                 <div className="navbar-footer-setion">
