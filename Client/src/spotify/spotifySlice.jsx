@@ -12,7 +12,10 @@ export const spotifyClice = createSlice({
         addAlbumsToLibrery:[],
         addPlaylistsToLibrery:[],
         isSaveActive: false,
-        playSongArray: []
+        playSongArray: [],
+        playSingleSong: [],
+        isSongActive: false,
+        isplaylistActive: false
     },
     reducers:{
         onClickSearch:(state)=>{
@@ -65,6 +68,13 @@ export const spotifyClice = createSlice({
         },
         onClickPlaySongButton: (state, action)=> {
             state.playSongArray.splice(0,1,action.payload)
+            state.isplaylistActive = true
+            state.isSongActive = false
+        },
+        onClickPlaySingleSong: (state, action) => {
+            state.playSingleSong.splice(0,1,action.payload)
+            state.isSongActive = true
+            state.isplaylistActive = false
         }
         
     }
@@ -83,7 +93,8 @@ export const {
     onClickSavePlaylist,
     onClickSaveAlbum,
     onClickUnSavePlaylist,
-    onClickPlaySongButton
+    onClickPlaySongButton,
+    onClickPlaySingleSong
     
 } = spotifyClice.actions
 

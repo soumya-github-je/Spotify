@@ -10,35 +10,32 @@ import {
 import { useFetchWebAPI } from '../../hooks';
 const Player = () => {
     const state = useSelector((state)=> state.spotify)
-    const tracksData = state.playSongArray
-    console.log("tracks", tracksData)
-    
-    const [trackIndex, setTrackIndex] = useState(0);
-    
     const [currentTrack, setCurrentTrack] = useState([]);
-    const [isPlaying, setIsPlaying] = useState(true);
+   const [isPlaying, setIsPlaying] = useState(true);
     const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(60);
   const [muteVolume, setMuteVolume] = useState(false);
  
  
+  
+console.log("soumya", state.playSingleSong)
+const singleSong = state.playSingleSong
+useEffect(() => {
+  setCurrentTrack(prevArray => [
+  ...prevArray, 
+  singleSong[0]
+  ]);
+//   let newTrackList = [...prevArray];
+// newTrackList.splice(2, 1, tracksData[0]);
+// setCurrentTrack(newTrackList); 
+ 
+}, [singleSong]);
 
-    useEffect(() => {
-        setCurrentTrack(prevArray => [
-        ...prevArray, 
-        tracksData[0]
-        ]);
-      //   let newTrackList = [...prevArray];
-      // newTrackList.splice(2, 1, tracksData[0]);
-      // setCurrentTrack(newTrackList); 
-       
-    }, [tracksData]);
+    const currentSong = currentTrack[currentTrack.length-1]
     
-    const splicedData = currentTrack[currentTrack.length-1]
     
-    const currentSong = splicedData?.items[trackIndex]
-    
+   
     const togglePlayPause = () => {
         setIsPlaying((prev) => !prev);
       };
@@ -119,18 +116,17 @@ const Player = () => {
         setTrackIndex(prev => prev+1)
       };
 
-      console.log(trackIndex)
-
+     
       
                   
     return (
        
       <div className="player-wrapper">
       <div className="player-song">
-      <img src={currentSong?.track?.album?.images[0].url} alt=""  className='player-song-img'/>
+      <img src={currentSong?.album?.images[0]?.url} alt=""  className='player-song-img'/>
           <div className='player-song-discription'>
-              <p className='player-song-name'>{currentSong?.track?.name}</p>
-              <p className='player-song-artists-name'>{currentSong?.track?.album?.artists[0]?.name}</p>
+              <p className='player-song-name'>{currentSong?.name}</p>
+              <p className='player-song-artists-name'>{currentSong?.artists[0]?.name}</p>
           </div>
       </div>
       <div className="player-container">
@@ -185,7 +181,7 @@ const Player = () => {
               <div className="player-progress"></div>
           </div> */}
           <div>
-          <audio src={currentSong?.track?.preview_url} ref={audioRef} onLoadedMetadata={onLoadedMetadata} onEnded={handleNext}></audio>
+          <audio src={currentSong?.preview_url} ref={audioRef} onLoadedMetadata={onLoadedMetadata}></audio>
           </div>
           <div className="progress">
               <span className="time current">{formatTime(timeProgress)}</span>

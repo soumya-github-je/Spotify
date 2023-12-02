@@ -118,7 +118,7 @@ const SongDetails = () => {
                 </div>
                 <div className="playlist-songs-and-album-head-container" style={songHeadStyle}>
                     <div className="hash-and-title-head">
-                        <p className="hash-head">#</p>
+                        
                         <p className="title-head">Title</p>
                     </div>
                     <p className="album-head">Album</p>

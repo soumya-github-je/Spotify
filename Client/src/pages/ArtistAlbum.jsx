@@ -11,7 +11,7 @@ import {GET_PLAYLIST } from "../gql/queries"
 import { useNavigate, useParams } from "react-router-dom"
 import { useFetchWebAPI } from "../hooks"
 import { useDispatch, useSelector } from "react-redux"
-import {onClickPlaySongButton, onClickSaveTrack } from "../spotify/spotifySlice"
+import {onClickPlaySingleSong, onClickPlaySongButton, onClickSaveTrack } from "../spotify/spotifySlice"
 
 const ArtistAlbum = () => {
     const navigate = useNavigate()
@@ -49,7 +49,7 @@ const ArtistAlbum = () => {
 
     if (loading) "Loading..."
     
-    var date = new Date(data?.album.release_date)
+    var date = new Date(data?.album?.release_date)
     var year = date.getFullYear(); 
 
     const ms = data?.duration_ms
@@ -64,13 +64,13 @@ const ArtistAlbum = () => {
                 <SongTopCard 
                     type="Song"
                     // primaryColor={data?.primary_color}
-                    image={data?.album.images[0]?.url}
+                    image={data?.album?.images[0]?.url}
                     // // songs={data?.tracks}
                     name={data?.name}
                     authorName={data?.artists[0]?.name}
                     songPostedYear={year}
                     songDuration={duration}
-                    authorImage={data?.album.images[2]?.url}
+                    authorImage={data?.album?.images[2]?.url}
                     // description={data?.description}
                 />
             </div>
@@ -79,7 +79,7 @@ const ArtistAlbum = () => {
                 <div className="playlist-icons-container">
                     <div className="playlist-play-icon">
                         <PlayCircleFilled 
-                        
+                        onClick={()=> dispatch(onClickPlaySingleSong(data?.album?.artists[0].id))}
                         style={{
                             fontSize: 55,
                             color: "#1BD760"
@@ -104,24 +104,24 @@ const ArtistAlbum = () => {
               
                 <div className="album-artist-image-and-info">
                     <div className="album-artist-img">
-                        <img src= {data?.album.images[1]?.url} alt="" />
+                        <img src= {data?.album?.images[1]?.url} alt="" />
                     </div>
                     
                     <div className="album-artist-info">
                         <p>Artist</p>
                         
-                            <p className="artist-name" onClick={()=> navigate(`/author-details/${data?.artists[0].id}`)}>{data?.artists[0].name}</p>
+                            <p className="artist-name" onClick={()=> navigate(`/author-details/${data?.artists[0]?.id}`)}>{data?.artists[0]?.name}</p>
                        
                         
                     </div>
     </div>
                 <div className="popular-tracks-of-artist">
                     <p>Popular Tracks by</p>
-                    <h1>{data?.artists[0].name}</h1>
+                    <h1>{data?.artists[0]?.name}</h1>
                 </div>
                 <div className="artist-album-cards-containers">
                     <ArtistSongCard
-                   albumData= {data?.album.artists[0].id}
+                        albumData= {data?.album?.artists[0]?.id}
                     />
                 </div>
                 <div className="popular-releases-by-artist-container">
@@ -131,7 +131,7 @@ const ArtistAlbum = () => {
                     
                     <div className="from-the-single-container">
                         <div className="from-the-single-img-container">
-                            <img src={data?.album.images[1]?.url} alt=""  className="from-the-single-img"/>
+                            <img src={data?.album?.images[1]?.url} alt=""  className="from-the-single-img"/>
                         </div>
                         <div className="from-the-single-info-container">
                             <p>From the single</p>
@@ -149,8 +149,8 @@ const ArtistAlbum = () => {
                     
                     </div>
                     <div className="©-and-℗-container">
-                        <p>©{data?.artists[0].name} </p>
-                        <p>℗{data?.artists[0].name} </p>
+                        <p>©{data?.artists[0]?.name} </p>
+                        <p>℗{data?.artists[0]?.name} </p>
                     </div>
                 </div>
 

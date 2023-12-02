@@ -30,6 +30,14 @@ const AlbumCard = ({playlistTrackItems}) => {
     }
 
     
+    const length = 50
+    const numbers = [];
+
+    for (let i = 1; i <= length; i++) {
+        numbers.push(i);    
+      }
+
+      console.log(numbers)
     
     return(
         <div className="album-list-container"
@@ -42,7 +50,7 @@ const AlbumCard = ({playlistTrackItems}) => {
                     hover ? <CaretRightOutlined style={{
                         fontSize: 20,
                     }} />
-                        : "1"
+                        : null
                 }
                 </span>
                 <div className="album-image-and-title" 

@@ -68,6 +68,9 @@
 .clock-icon{
     flex: 0.1;
 }
+.title-head{
+    padding-left: 20px;
+}
 
 .album-card-container{
     counter-reset: item;
