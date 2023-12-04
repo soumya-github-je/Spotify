@@ -37,8 +37,7 @@ const AlbumCard = ({playlistTrackItems}) => {
         numbers.push(i);    
       }
 
-      console.log(numbers)
-    
+     
     return(
         <div className="album-list-container"
             onMouseEnter={()=> setHover(true)}

@@ -8,7 +8,7 @@ const SearchArtists = () => {
   const state = useSelector((state)=> state.spotify)
   const {data, error, loading} = 
   useFetchWebAPI(`v1/search?q=${state.searchInput}&&type=${state.searchType}`, "GET")
-  console.log("playlist", data, loading, error)
+  
   return (
     <>
     <SearchType/>

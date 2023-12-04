@@ -19,7 +19,7 @@ const Player = () => {
  
  
   
-console.log("soumya", state.playSingleSong)
+
 const singleSong = state.playSingleSong
 useEffect(() => {
   setCurrentTrack(prevArray => [

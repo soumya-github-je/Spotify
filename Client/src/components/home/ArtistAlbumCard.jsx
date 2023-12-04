@@ -16,11 +16,6 @@ const ArtistAlbumCard = () => {
     const {id} = useParams()
     
     const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}/top-tracks?market=IN&EN`, "GET")
-      console.log("top-tracks",data, loading, error)
-
-    
-
-  
     
   return (
     <ol className="album-card-container">

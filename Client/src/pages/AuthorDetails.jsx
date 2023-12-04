@@ -17,13 +17,11 @@ const AuthorDetails = () => {
     
     const {id} = useParams()
     const { data, loading, error } = useFetchWebAPI(`v1/artists/${id}`, "GET")
-    console.log("artist",data, loading, error)
-
+    
     
     
     const image_url = data?.images[0]?.url
-    console.log(image_url)
-
+    
   return (
     <div className='author-details-head-container' style={{ backgroundImage: `url(${image_url})`}}>
       

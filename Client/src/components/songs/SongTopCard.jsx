@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import "./songtopcard.css"
 
 const SongTopCard = ({ image, type, name, description, authorImage, primaryColor, authorName ,songPostedYear, songDuration, songsDuration, songsCount,likes}) => {
-    console.log(primaryColor)
+    
     const styles = primaryColor?.toLowerCase() !== '#FFFFFF'.toLowerCase() ? {
         background: primaryColor
     } : {

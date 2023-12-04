@@ -7,9 +7,7 @@ import "./albumitem.css"
 // import { useFetchWebAPI} from "../../hooks"
 
 const AlbumItem = (albumTrackItems) => {
-    console.log("AlbumItem", albumTrackItems)
     
-   
     const ms = albumTrackItems.albumTrackItems.duration_ms
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);

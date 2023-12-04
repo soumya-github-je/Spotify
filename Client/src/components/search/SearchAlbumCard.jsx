@@ -7,7 +7,7 @@ const SearchAlbumCard = (albumItems) => {
     const navigate = useNavigate()
 
     const id = albumItems?.albumItems?.id
-    console.log(id)
+    
   return (
     <div className='search-artist-card-container' onClick={()=> navigate(`/author-details/${id}`)}>
         <div className="play-button">

@@ -19,10 +19,7 @@ const ArtistAlbum = () => {
     const dispatch = useDispatch()
     const {id} = useParams()
     const { data, loading, error } = useFetchWebAPI(`v1/tracks/${id}`, "GET")
-    console.log("album",data, loading, error)
-
-    console.log("song-saved", state.addTracksToLibrery)
-   
+    
     useEffect(()  => {
         const handleScroll = () =>{
             var songListTop = document.querySelector(".playlist-icons-container")
@@ -79,7 +76,7 @@ const ArtistAlbum = () => {
                 <div className="playlist-icons-container">
                     <div className="playlist-play-icon">
                         <PlayCircleFilled 
-                        onClick={()=> dispatch(onClickPlaySingleSong(data?.album?.artists[0].id))}
+                        
                         style={{
                             fontSize: 55,
                             color: "#1BD760"

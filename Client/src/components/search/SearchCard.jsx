@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const SearchCard = (artistItem) => {
   const navigate = useNavigate()
-  console.log(artistItem)
+  
   const id = artistItem?.artistItem?.artists[0]?.id
   return (
     <div className='search-card-container' onClick={()=> navigate(`/author-details/${id}`)}>

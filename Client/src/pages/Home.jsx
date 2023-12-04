@@ -8,7 +8,6 @@ import PlaylistWrapper from "../components/PlaylistWrapper"
 const Home = ()=> {
     
     const { data, loading, error } = useFetchWebAPI("v1/browse/categories", "GET")
-    console.log(data, loading, error)
     
     return(
 

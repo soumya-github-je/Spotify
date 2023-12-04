@@ -19,10 +19,7 @@ const AlbumDetails = () => {
     const dispatch = useDispatch()
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/albums/${id}`, "GET")
-    console.log("album", data, loading, error)
-
-    console.log("album-saved", state.addAlbumsToLibrery)
-
+    
     useEffect(()  => {
         const handleScroll = () =>{
             

@@ -11,7 +11,6 @@ import { useFetchWebAPI } from '../../hooks';
 const Player = () => {
     const state = useSelector((state)=> state.spotify)
     const tracksData = state.playSongArray
-    console.log("tracks", tracksData)
     
     const [trackIndex, setTrackIndex] = useState(0);
     
@@ -118,8 +117,6 @@ const Player = () => {
        
         setTrackIndex(prev => prev+1)
       };
-
-      console.log(trackIndex)
 
       
                   

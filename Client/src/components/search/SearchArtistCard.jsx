@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const SearchArtistCard = (artistItems) => {
   const navigate = useNavigate()
-  console.log(artistItems)
+  
  const imageUrl= artistItems?.artistItems?.images
  const id =  artistItems?.artistItems?.id
   return (

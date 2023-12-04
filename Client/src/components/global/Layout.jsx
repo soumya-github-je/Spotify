@@ -8,9 +8,7 @@ import { useEffect, useState } from "react"
 
 const Layout = () => {
     const state = useSelector((state) => state.spotify)
-    console.log("playList-state", state.isplaylistActive)
-    console.log("song-state", state.isSongActive)
-  
+    
     return(
         <div className="layout-wraper"> 
         <Navbar/>

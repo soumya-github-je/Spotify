@@ -46,14 +46,10 @@ import SearchAlbumCard from '../components/search/SearchAlbumCard'
 const Search = () => {
   
   
-// const [searchType, setSearchType] = useState("")
+
   const state = useSelector((state)=> state.spotify)
 
-//   const clickingSearchType = event => {
-//     const id = event.target.id
-//     setSearchType(searchTypes[id-1].content)
-    
-//   }
+
   
  
   
@@ -61,8 +57,7 @@ const Search = () => {
   const {data, error, loading} = 
   useFetchWebAPI(`v1/search?q=${state.searchInput}&&type=track%2Calbum%2Cplaylist%2Cartist`, "GET")
 
-  console.log("search-items", data, error, loading)
- 
+  
   return (
     <div className='search-main-container'>
         {/* <div className='search-types-container'>

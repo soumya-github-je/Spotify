@@ -18,7 +18,7 @@ const Main = () => {
     const navigate = useNavigate()
     const state = useSelector((state)=> state.spotify)
 
-    console.log("search-input", state.searchInput)
+    
     const dispatch = useDispatch()
 
     const onChange = e => {

@@ -22,12 +22,7 @@ const SongDetails = () => {
     // 
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/playlists/${id}`, "GET")
-    console.log("Playlist", data, loading, error)
-
     
-
-    console.log("playlist-saved", state.addPlaylistsToLibrery)
-
     useEffect(()  => {
         const handleScroll = () =>{
             

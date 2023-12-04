@@ -6,7 +6,7 @@ import { onClickPlaySingleSong } from '../../spotify/spotifySlice'
 
 const SearchTracks = (trackItem) => {
   const navigate = useNavigate()
-  console.log(trackItem)
+  
   const dispatch = useDispatch()
   const ms = trackItem.trackItem.duration_ms
     const minutes = Math.floor(ms / 60000);

@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tooltip'
 import "./searchsongs.css"
 import { useNavigate } from 'react-router-dom'
 const SearchSongs = (songItem) => {
-    console.log(songItem)
+    
     const [hover, setHover] = useState(false)
     const navigate = useNavigate()
     const ms = songItem?.songItem?.duration_ms
