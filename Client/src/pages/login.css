@@ -6,3 +6,6 @@
 .login-wrapper {
     width: 400px;
   }
+  .error-msg{
+    color: #ff0000;
+  }

@@ -1,54 +1,89 @@
 import { EyeFilled, UserOutlined } from '@ant-design/icons'
 import { Button, Input, Divider, Typography } from 'antd'
+
 import './login.css'
 import { useNavigate ,Link} from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import { LOGIN } from '../gql/queries'
-
+import { getToken } from '../config'
 
 const Login = () => {
     const navigate = useNavigate()
     const [formValues, setFormValues] = useState({
         email: '',
-        password: ""
+        password: "",
+        errorMsg: ""
     })
+    const [value, setValue] = useState('');
+    const [error, setError] = useState('');
 
-    const [logintoAccount] = useLazyQuery(LOGIN)
+
+    const validatePassword = (password) => {
+        const minLength = 8;
+
+        if (password.length < minLength) {
+          throw new Error('Password must be at least 8 characters');  
+        }
+        
+        if (!password.match(/[A-Z]/)) {
+            throw new Error('Password must contain at least one uppercase letter');  
+          }
+          if (!password.match(/[a-z]/)) {
+            throw new Error('Password must contain at least one lowercase letter');  
+          }
+        // 
+        if (!password.match(/[!-*]/)) {
+            throw new Error('Password must contain at least one charector');  
+          }
+          if (!password.match(/[0-9]/)) {
+            throw new Error('Password must contain at least one number');  
+          }
+       }
+
+ 
+    // const [logintoAccount] = useLazyQuery(LOGIN)
     
     const handleEmail = (e) => {
         const { value } = e.target
-        setFormValues((prev) => ({
-            ...prev,
+        setFormValues({
             email: value
-        }))
+        })
     }
     const handlePass = (e) => {
-        const { value } = e.target
-        setFormValues((prev) => ({
-            ...prev,
-            password: value
-        }))
-    }
-
-const login =  async () => {
-    if (formValues.email != "" && formValues.email != null){
-        const token = await logintoAccount({
-           
-            variables: {
-                email: formValues.email,
-                password: formValues.password
-            }
-        })
-        if (!token.error){
-            localStorage.setItem("token" , token.data.login.token)
-            navigate('/')
+        const { value } = e.target;
+        setValue(value);
+        try {
+            validatePassword(value);  
+            setError('');
+        } catch (err) {
+            setError(err.message);
         }
-        alert(token.error.message)
+        
     }
-}
 
+    // const login = async () => {
+    //     // Get the token first
+    //     await getToken();
+   
+    //     // Then navigate after the token has been retrieved
+    //     navigate("/") 
+    // }
 
+    const login =() => {
+        if (formValues.email === "" && formValues.password === ""){
+            setFormValues({
+                errorMsg: "Please enter email and password"
+            })
+        }
+        else{
+            getToken();
+            navigate("/");
+        }
+
+       
+      }
+      
     return(
       <div className="login-container">
         <div className="login-wrapper">
@@ -66,17 +101,20 @@ const login =  async () => {
                     style={{
                         margin: "20px 0"
                     }}
-                    type='password'
+                    type='text'
                     onChange= {handlePass}
-                    value={formValues.password}
-                    placeholder="password" prefix={<EyeFilled />} />        
-                <Button
-                    onClick={login}
-                >
-                    Login
+                    value={value}
+                    placeholder="password" prefix={<EyeFilled />} />  
+                    {error && <p className="error-msg">{error}</p>}
+                    <Button
+                            onClick={login}
+                        >
+                            Login
                 </Button>
+                        
+                <p className='error-msg'>{formValues.errorMsg}</p>
 
-                <Divider style={{
+                {/* <Divider style={{
                     background: "#aaa"
                 }} />
                 <Typography.Paragraph
@@ -87,7 +125,7 @@ const login =  async () => {
                     Not yet register <Link to="/register">
                         Register here
                     </Link>
-                </Typography.Paragraph>
+                </Typography.Paragraph> */}
 
             
         </div>

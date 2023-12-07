@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { Suspense, lazy, useEffect } from 'react'
-// import ProtectedRoute from './components/global/ProtectedRoute'
+import ProtectedRoute from './components/global/ProtectedRoute'
+import Login from "./pages/Login"
 
-// import Login from './pages/Login'
-// import Register from './pages/Register'
-import { getToken } from './config'
+
 const HomePage = lazy(() => import('./pages/Home'))
 const SearchPage= lazy(() => import('./pages/Search'))
 const PageLayout = lazy(() => import("./components/global/Layout"))
@@ -19,18 +18,39 @@ const SearchPlaylistPage = lazy(()=> import("./pages/SearchPlaylist"))
 const SearchArtistPage = lazy(()=> import("./pages/SearchArtists"))
 const SearchAlbumPage = lazy(()=> import("./pages/SearchAlbum"))
 const SearchSongPage = lazy(() => import("./pages/SearchSong"))
+const LoginPage = lazy(()=> import("./pages/Login"))
 
 function App() {
 
-  useEffect(()=> {
-    const token = localStorage.getItem("token")
-    if(!token) getToken()
-  },[])
+  // useEffect(()=> {
+    
+  //   const token = localStorage.getItem("token")
+  //   if(!token){
+  //     <Route path="/login" element={<Suspense><LoginPage/></Suspense>}/>
+  //     getToken()
+  //   }
+  // },[])
 
+  // const token = localStorage.getItem("token");
+
+  // useEffect(() => {    
+  //   const token = localStorage.getItem("token");
+  //   if(!token){
+      
+  //     getToken();   
+  //   }
+  // }, [localStorage.getItem("token")])
+
+  
+  // {!token && <Route path="/login" element={<Suspense><LoginPage/></Suspense>}/>}
+  
+  
+  
   return (
     <Router>
       <Routes>
-        {/* <Route element={<ProtectedRoute />}> */}
+        <Route element={<ProtectedRoute />}>
+        
           <Route path="/" element={<Suspense><PageLayout /></Suspense>}>
             <Route path='/' element={<Suspense><HomePage /></Suspense>} />
             <Route path='/song-listing' element={<Suspense><SongListingPage /></Suspense>} />
@@ -45,9 +65,9 @@ function App() {
             <Route path="/search-albums" element={<Suspense><SearchAlbumPage/></Suspense>}/>
             <Route path="/search-songs" element={<Suspense><SearchSongPage/></Suspense>}/>
           </Route>
-        {/* </Route> */}
-        {/* <Route path='/login' element={<Login />} ></Route>
-        <Route path='/register' element={<Register />} ></Route> */}
+        </Route>
+         <Route path='/login' element={<Login />} ></Route>
+        
       </Routes>
     </Router>
   )
