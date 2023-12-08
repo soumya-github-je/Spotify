@@ -10,11 +10,8 @@ import { getToken } from '../config'
 
 const Login = () => {
     const navigate = useNavigate()
-    const [formValues, setFormValues] = useState({
-        email: '',
-        password: "",
-        errorMsg: ""
-    })
+    const [emailValue, setEmailValue] = useState("")
+    const [errorMsg, setErrorMsg] = useState("")
     const [value, setValue] = useState('');
     const [error, setError] = useState('');
 
@@ -34,7 +31,7 @@ const Login = () => {
           }
         // 
         if (!password.match(/[!-*]/)) {
-            throw new Error('Password must contain at least one charector');  
+            throw new Error('Password must contain at least one special charector');  
           }
           if (!password.match(/[0-9]/)) {
             throw new Error('Password must contain at least one number');  
@@ -46,9 +43,8 @@ const Login = () => {
     
     const handleEmail = (e) => {
         const { value } = e.target
-        setFormValues({
-            email: value
-        })
+        setEmailValue(value)
+        
     }
     const handlePass = (e) => {
         const { value } = e.target;
@@ -70,20 +66,23 @@ const Login = () => {
     //     navigate("/") 
     // }
 
-    const login =() => {
-        if (formValues.email === "" && formValues.password === ""){
-            setFormValues({
-                errorMsg: "Please enter email and password"
-            })
-        }
-        else{
-            getToken();
-            navigate("/");
-        }
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+            if(!token) getToken()
+      }, []);
 
-       
-      }
+    const login = () => {
+        if (emailValue !== "" && value !== ""){
+            navigate("/")
+        }else{
+            setErrorMsg("Please enter email and password")
+        }
+          
+    }
+    
       
+      
+    
     return(
       <div className="login-container">
         <div className="login-wrapper">
@@ -94,7 +93,7 @@ const Login = () => {
                     }}
                     type='text'
                     onChange= {handleEmail}
-                    value={formValues.email}
+                    value={emailValue}
                     placeholder="email" prefix={<UserOutlined />} />
 
             <Input size="large"
@@ -112,7 +111,7 @@ const Login = () => {
                             Login
                 </Button>
                         
-                <p className='error-msg'>{formValues.errorMsg}</p>
+                <p className='error-msg'>{errorMsg}</p>
 
                 {/* <Divider style={{
                     background: "#aaa"
