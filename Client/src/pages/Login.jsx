@@ -3,10 +3,9 @@ import { Button, Input, Divider, Typography } from 'antd'
 
 import './login.css'
 import { useNavigate ,Link} from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { useLazyQuery } from '@apollo/client'
-import { LOGIN } from '../gql/queries'
+
 import { getToken } from '../config'
+import { useState } from 'react'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -66,22 +65,16 @@ const Login = () => {
     //     navigate("/") 
     // }
 
-    useEffect(() => {
+    
+    const login = async () => {
+        await getToken()
         const token = localStorage.getItem("token")
-            if(!token) getToken()
-      }, []);
-
-    const login = () => {
-        if (emailValue !== "" && value !== ""){
+        if(token){
             navigate("/")
-        }else{
-            setErrorMsg("Please enter email and password")
         }
-          
     }
     
-      
-      
+     
     
     return(
       <div className="login-container">

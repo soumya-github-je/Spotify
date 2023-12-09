@@ -3,6 +3,7 @@ import './App.css'
 import { Suspense, lazy, useEffect } from 'react'
 import ProtectedRoute from './components/global/ProtectedRoute'
 import Login from "./pages/Login"
+import { getToken } from './config'
 
 
 const HomePage = lazy(() => import('./pages/Home'))
@@ -45,7 +46,7 @@ function App() {
   // {!token && <Route path="/login" element={<Suspense><LoginPage/></Suspense>}/>}
   
   
-  
+    
   return (
     <Router>
       <Routes>
