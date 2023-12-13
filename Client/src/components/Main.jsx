@@ -1,10 +1,11 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import {LeftOutlined, RightOutlined, PlayCircleFilled, SearchOutlined} from "@ant-design/icons"
+import {LeftOutlined, RightOutlined, PlayCircleFilled, SearchOutlined, LogoutOutlined} from "@ant-design/icons"
 import { useState, useEffect, useRef } from "react";
 import Footer from "./global/Footer"
 import { useSelector, useDispatch } from "react-redux";
 import "./main.css"
 import { onChangeSearchInput } from "../spotify/spotifySlice";
+import Popup from 'reactjs-popup'
 
 const Main = () => {
     const [show ,setShow] = useState({
@@ -57,13 +58,17 @@ const Main = () => {
 
     console.log("main", mainRef.current)
 
+    const onClickLogoutButton = () => {
+       localStorage.removeItem("token")
+       navigate("/login")
+    }
+
     return(
         <div className="main" ref={mainRef}>
             <div className="main-top" style={{
                 ...bgColor,
                 marginLeft: "auto",
                 
-                width: mainRef.current ? mainRef.current.clientWidth : "inherit",
             }}>
                 <div className="navigation-arrows">
                     <div className="left-arrow" onClick={()=> navigate(-1)}><LeftOutlined/></div>
@@ -77,19 +82,51 @@ const Main = () => {
                     
                     <input type="search" className="search-input" value={state.searchInput} onChange={onChange} placeholder="What do you want to listen to?"/>
                     </div>}
-                <div className="playlist-play-icon1" style={show}>
-                        <PlayCircleFilled 
-                        style={{
-                            fontSize: 55,
-                            color: "#1BD760"
-
-                            }}/>
-                        <h1>{title}</h1>
-                    </div>
+                
                 <div className="buttons-container">
                     
-                    <button className="sign-up-button">Sign up</button>
-                    <button className="log-in-button">Log in</button>
+                  
+                    {/* <button className="log-in-button">Log out</button> */}
+                    <div className="popup-container">
+                                        <Popup
+                                            modal
+                                            trigger={
+                                                <div>
+                                                    <button type="button" className="log-in-button">
+                                                        <LogoutOutlined className="logout-icon"/>
+                                                        <p className="logout-text">Log out</p>
+                                                    </button>
+                                                </div>
+                                            
+                                            }
+                                        >
+                                            {close => (
+                                            <>  
+                                            <div className="pop-up-bg-container">
+                                                <div>
+                                                    <p className="pop-up-text">Are you sure! You want to Logout?</p>
+                                                    </div>
+                                                    <div>
+                                                        <button
+                                                        type="button"
+                                                        className="popop-up-button"
+                                                        onClick={() => close()}
+                                                        >
+                                                        Close
+                                                        </button>
+                                                        
+                                                            <button type="button" className="popop-up-button" onClick={onClickLogoutButton}>
+                                                                Confirm
+                                                            </button>
+                                                        
+                                                        
+                                                    </div>
+                                            </div>
+                                            </>
+                                            )}
+                                        </Popup>
+
+                    </div>
                 </div>
             </div>
             <Outlet/>

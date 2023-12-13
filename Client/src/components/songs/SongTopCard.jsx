@@ -6,13 +6,14 @@ const SongTopCard = ({ image, type, name, description, authorImage, primaryColor
     
     const styles = primaryColor?.toLowerCase() !== '#FFFFFF'.toLowerCase() ? {
         background: primaryColor
-    } : {
-        background: `url(${image || "https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6"})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundBlendMode: "soft-light"
-    }
+    } : null
+    // {
+    //     background: `url(${image || "https://i.scdn.co/image/ab67706f00000002ca5a7517156021292e5663a6"})`,
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundSize: "cover",
+    //     backgroundPosition: "center",
+    //     backgroundBlendMode: "soft-light"
+    // }
   return (
     <div className="playlist-head-container"
     style={styles}>

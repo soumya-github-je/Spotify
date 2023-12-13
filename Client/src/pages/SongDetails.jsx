@@ -22,6 +22,7 @@ const SongDetails = () => {
     // 
     const {id} = useParams()
     const {data, error, loading} = useFetchWebAPI(`v1/playlists/${id}`, "GET")
+    console.log(data)
     
     useEffect(()  => {
         const handleScroll = () =>{

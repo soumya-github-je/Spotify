@@ -16,7 +16,7 @@ const PlaylistWrapper = ({ cat }) => {
         <section className="first-section">
             <div className="section-top">
                 <p className="section-head">{cat.name}</p>
-                <Link to="/song-listing" className="show-all">Show all</Link>
+                
             </div>
             <div className="song-card-container">
                 {

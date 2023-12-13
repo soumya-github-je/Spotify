@@ -1,4 +1,4 @@
-import { EyeFilled, UserOutlined } from '@ant-design/icons'
+import { EyeFilled, EyeInvisibleFilled, UserOutlined } from '@ant-design/icons'
 import { Button, Input, Divider, Typography } from 'antd'
 
 import './login.css'
@@ -13,6 +13,7 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState("")
     const [value, setValue] = useState('');
     const [error, setError] = useState('');
+    const [isChecked, setIsChecked] = useState(false)
 
 
     const validatePassword = (password) => {
@@ -30,7 +31,7 @@ const Login = () => {
           }
         // 
         if (!password.match(/[!-*]/)) {
-            throw new Error('Password must contain at least one special charector');  
+            throw new Error('Password must contain at least one special character');  
           }
           if (!password.match(/[0-9]/)) {
             throw new Error('Password must contain at least one number');  
@@ -74,6 +75,9 @@ const Login = () => {
         }
     }
     
+    const isCheckedhandle = () => {
+        setIsChecked(!isChecked)
+    }
      
     
     return(
@@ -87,16 +91,29 @@ const Login = () => {
                     type='text'
                     onChange= {handleEmail}
                     value={emailValue}
-                    placeholder="email" prefix={<UserOutlined />} />
+                    placeholder="username" prefix={<UserOutlined />} />
 
-            <Input size="large"
+            {isChecked ? <Input size="large"
                     style={{
                         margin: "20px 0"
                     }}
                     type='text'
                     onChange= {handlePass}
                     value={value}
-                    placeholder="password" prefix={<EyeFilled />} />  
+                    placeholder="password" prefix={<EyeFilled  onClick={isCheckedhandle}/>} />  
+                    : <Input size="large"
+                    style={{
+                        margin: "20px 0"
+                    }}
+                    type='password'
+                    onChange= {handlePass}
+                    value={value}
+                    placeholder="password" prefix={<EyeInvisibleFilled onClick={isCheckedhandle}/>} />  
+                
+                }
+
+
+
                     {error && <p className="error-msg">{error}</p>}
                     <Button
                             onClick={login}

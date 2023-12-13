@@ -23,7 +23,8 @@
     "react-icons": "^4.12.0",
     "react-redux": "^8.1.3",
     "react-router-dom": "^6.13.0",
-    "react-tooltip": "^5.16.1"
+    "react-tooltip": "^5.16.1",
+    "reactjs-popup": "^2.0.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

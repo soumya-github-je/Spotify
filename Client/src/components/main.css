@@ -17,10 +17,11 @@
     z-index: 9999;
     width: inherit;
     top: 0;
-    
+    height: 8vh;
     right: 0px;
     left: 0;
     display: flex;
+    width: 78.7%;
     align-items: center;
     padding: 10px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -108,11 +109,11 @@
   .buttons-container button {
     margin: 0 15px;
   }
-  .sign-up-button,
+  
   .log-in-button {
     border: 0;
     outline: 0;
-  
+    display: flex;
     font-size: 14px;
     background: transparent;
     color: #aaa;
@@ -121,6 +122,9 @@
   }
   .buttons-container {
     margin-left: auto;
+  }
+  .logout-icon{
+    margin-right: 5px;
   }
   .playlist-play-icon1 {
     display: flex;
@@ -142,8 +146,8 @@
     -o-transform: scale(1.1);
   }
   .log-in-button {
-    background: #fff;
-    color: #00000a;
+    background: #ffffff;
+    color: #0a0a0a;
     padding: 10px 20px;
     border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -167,4 +171,35 @@
   }
   .main::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+  .popup-container{
+
+  }
+  .pop-up-bg-container{
+    background-color: #0767f7;
+    height: 250px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .pop-up-text{
+    color: #fff;
+    
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .popop-up-button{
+    background-color: #fff;
+    height: 40px;
+    width: 90px;
+    outline: none;
+    border-width: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    
   }
